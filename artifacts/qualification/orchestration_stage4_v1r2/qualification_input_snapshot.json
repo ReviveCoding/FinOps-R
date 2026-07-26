@@ -1,0 +1,221 @@
+{
+  "locked": true,
+  "scenarios": {
+    "locked": true,
+    "scenarios": [
+      {
+        "candidate_action": "REQUEST_ALLOCATION",
+        "evidence_ids": [
+          "sec.rule15c6-2.aca.trade_date"
+        ],
+        "expected_final_route": "SIMULATE",
+        "expected_initial_route": "SIMULATE",
+        "expected_learned_flag": false,
+        "external_execution_requested": false,
+        "hit_ids": [
+          "sec.rule15c6-2.aca.trade_date"
+        ],
+        "permitted_actions": [
+          "REQUEST_ALLOCATION",
+          "HOLD_FOR_REVIEW"
+        ],
+        "planner_hold": false,
+        "predicted_cause": "LATE_ALLOCATION",
+        "requested_target": "TRADEOPS_SIM",
+        "review_capacity_available": true,
+        "review_decision": null,
+        "scenario_id": "locked_allocation_simulate"
+      },
+      {
+        "candidate_action": "REQUEST_AFFIRMATION",
+        "evidence_ids": [
+          "sec.rule15c6-2.aca.trade_date"
+        ],
+        "expected_final_route": "SIMULATE",
+        "expected_initial_route": "SIMULATE",
+        "expected_learned_flag": false,
+        "external_execution_requested": false,
+        "hit_ids": [
+          "sec.rule15c6-2.aca.trade_date"
+        ],
+        "permitted_actions": [
+          "REQUEST_AFFIRMATION",
+          "HOLD_FOR_REVIEW"
+        ],
+        "planner_hold": false,
+        "predicted_cause": "MISSING_AFFIRMATION",
+        "requested_target": "TRADEOPS_SIM",
+        "review_capacity_available": true,
+        "review_decision": null,
+        "scenario_id": "locked_affirmation_simulate"
+      },
+      {
+        "candidate_action": "REQUEST_SSI_REFRESH",
+        "evidence_ids": [
+          "dtcc.ssi.reference_data.tplus1"
+        ],
+        "expected_final_route": "SIMULATE",
+        "expected_initial_route": "SIMULATE",
+        "expected_learned_flag": false,
+        "external_execution_requested": false,
+        "hit_ids": [
+          "dtcc.ssi.reference_data.tplus1"
+        ],
+        "permitted_actions": [
+          "REQUEST_SSI_REFRESH",
+          "HOLD_FOR_REVIEW"
+        ],
+        "planner_hold": false,
+        "predicted_cause": "MISSING_SSI",
+        "requested_target": "TRADEOPS_SIM",
+        "review_capacity_available": true,
+        "review_decision": null,
+        "scenario_id": "locked_ssi_simulate"
+      },
+      {
+        "candidate_action": "CORRECT_ECONOMIC_FIELD",
+        "evidence_ids": [
+          "sec.rule15c6-2.discrepancy_delays"
+        ],
+        "expected_final_route": "SIMULATE",
+        "expected_initial_route": "REVIEW",
+        "expected_learned_flag": false,
+        "external_execution_requested": false,
+        "hit_ids": [
+          "sec.rule15c6-2.discrepancy_delays"
+        ],
+        "permitted_actions": [
+          "CORRECT_ECONOMIC_FIELD",
+          "HOLD_FOR_REVIEW"
+        ],
+        "planner_hold": false,
+        "predicted_cause": "PRICE_MISMATCH",
+        "requested_target": "TRADEOPS_SIM",
+        "review_capacity_available": true,
+        "review_decision": "APPROVE",
+        "scenario_id": "locked_correction_approve"
+      },
+      {
+        "candidate_action": "CORRECT_COUNTERPARTY",
+        "evidence_ids": [
+          "sec.rule15c6-2.discrepancy_delays"
+        ],
+        "expected_final_route": "HOLD",
+        "expected_initial_route": "REVIEW",
+        "expected_learned_flag": false,
+        "external_execution_requested": false,
+        "hit_ids": [
+          "sec.rule15c6-2.discrepancy_delays"
+        ],
+        "permitted_actions": [
+          "CORRECT_COUNTERPARTY",
+          "HOLD_FOR_REVIEW"
+        ],
+        "planner_hold": false,
+        "predicted_cause": "COUNTERPARTY_MISMATCH",
+        "requested_target": "TRADEOPS_SIM",
+        "review_capacity_available": true,
+        "review_decision": "REJECT",
+        "scenario_id": "locked_correction_reject"
+      },
+      {
+        "candidate_action": "CORRECT_SECURITY_IDENTIFIER",
+        "evidence_ids": [
+          "sec.rule15c6-2.discrepancy_delays"
+        ],
+        "expected_final_route": "HOLD",
+        "expected_initial_route": "HOLD",
+        "expected_learned_flag": false,
+        "external_execution_requested": false,
+        "hit_ids": [
+          "sec.rule15c6-2.discrepancy_delays"
+        ],
+        "permitted_actions": [
+          "CORRECT_SECURITY_IDENTIFIER",
+          "HOLD_FOR_REVIEW"
+        ],
+        "planner_hold": false,
+        "predicted_cause": "SECURITY_ID_MISMATCH",
+        "requested_target": "TRADEOPS_SIM",
+        "review_capacity_available": false,
+        "review_decision": null,
+        "scenario_id": "locked_capacity_hold"
+      },
+      {
+        "candidate_action": "REQUEST_AFFIRMATION",
+        "evidence_ids": [
+          "sec.rule15c6-2.aca.trade_date"
+        ],
+        "expected_final_route": "HOLD",
+        "expected_initial_route": "HOLD",
+        "expected_learned_flag": false,
+        "external_execution_requested": true,
+        "hit_ids": [
+          "sec.rule15c6-2.aca.trade_date"
+        ],
+        "permitted_actions": [
+          "REQUEST_AFFIRMATION",
+          "HOLD_FOR_REVIEW"
+        ],
+        "planner_hold": false,
+        "predicted_cause": "MISSING_AFFIRMATION",
+        "requested_target": "BROKER_API",
+        "review_capacity_available": true,
+        "review_decision": null,
+        "scenario_id": "locked_external_target_hold"
+      },
+      {
+        "candidate_action": "REQUEST_ALLOCATION",
+        "evidence_ids": [
+          "sec.rule15c6-1.standard_cycle.tplus1"
+        ],
+        "expected_final_route": "HOLD",
+        "expected_initial_route": "HOLD",
+        "expected_learned_flag": true,
+        "external_execution_requested": false,
+        "hit_ids": [
+          "sec.rule15c6-1.standard_cycle.tplus1"
+        ],
+        "permitted_actions": [
+          "REQUEST_ALLOCATION",
+          "HOLD_FOR_REVIEW"
+        ],
+        "planner_hold": false,
+        "predicted_cause": "LATE_ALLOCATION",
+        "requested_target": "TRADEOPS_SIM",
+        "review_capacity_available": true,
+        "review_decision": null,
+        "scenario_id": "locked_unsupported_citation_hold"
+      },
+      {
+        "candidate_action": "REQUEST_ALLOCATION",
+        "evidence_ids": [],
+        "expected_final_route": "HOLD",
+        "expected_initial_route": "HOLD",
+        "expected_learned_flag": true,
+        "external_execution_requested": false,
+        "hit_ids": [],
+        "permitted_actions": [
+          "REQUEST_ALLOCATION",
+          "HOLD_FOR_REVIEW"
+        ],
+        "planner_hold": true,
+        "predicted_cause": "LATE_ALLOCATION",
+        "requested_target": "TRADEOPS_SIM",
+        "review_capacity_available": true,
+        "review_decision": null,
+        "scenario_id": "locked_planner_abstention_hold"
+      }
+    ],
+    "schema_version": "1.0"
+  },
+  "scenarios_sha256": "f178c2e975181c612d3063629fa7470ffdd6274d9bf9a75707877b804ee3db76",
+  "schema_version": "1.0",
+  "source_cards_sha256": "5587f91d8643980f092a49823eaaa8302119286191b8674e41088b600366271b",
+  "verifier_artifact_sha256": "228362fef86903b160faf31b7056af6666717d7a9003aff833ca42ff58ba7968",
+  "verifier_provenance": {
+    "status": "PASS",
+    "threshold_snapshot_sha256": "4587d5147c4cb4658094247f144d1e075c9fcf2b3b71e95c39e36dbcd5bea042",
+    "training_snapshot_sha256": "f1b1e023743fda71c61ab2448f2e7524be6c8dbb087777e8bf0fb2f662ad1e13"
+  }
+}

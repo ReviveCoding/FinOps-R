@@ -1,0 +1,150 @@
+{
+  "contract": {
+    "claim_boundary": "controlled TradeOps-Sim and simulation-only orchestration",
+    "excluded_core_datasets": [
+      "CFPB complaints",
+      "Criteo uplift",
+      "DocVQA",
+      "EDGAR financial summaries",
+      "FUNSD",
+      "HMDA",
+      "Instacart",
+      "Kleister NDA",
+      "M5",
+      "SEC financial statements"
+    ],
+    "locked": true,
+    "model_contract": {
+      "expected_production_champion": "C1",
+      "expected_release_status": "HOLD",
+      "required_unauthorized_action_count": 0
+    },
+    "orchestration_contract": {
+      "expected_scenario_count": 9,
+      "expected_status": "PASS",
+      "require_langgraph": true,
+      "required_duplicate_effect_count": 0,
+      "required_external_execution_count": 0,
+      "required_trace_immutability_rate": 1.0
+    },
+    "qualification_id": "finops-r-integrated-stage5-v1",
+    "release_contract": {
+      "allowed_final_release_status_without_hosted_ci": "BLOCKED_EXTERNAL_CI",
+      "hosted_ci_required_for_final_release": true,
+      "local_evidence_level": "E3"
+    },
+    "schema_version": "1.0"
+  },
+  "contract_sha256": "4d667cf306ca3d28aa0634faaa0f98dc95d1598fb83c5f398377b011664e6b3c",
+  "locked": true,
+  "model": {
+    "artifact_files_checked": 59,
+    "artifact_manifest_sha256": "711fbdd592d1afef04401179940e200bd125f5a4fd590c548bea8d180f490e6d",
+    "bundle": {
+      "claim_boundary": "controlled simulation",
+      "model_version": "C1-0.4.0rc2",
+      "production_champion": "C1",
+      "run_id": "finopsr_20260726T201400Z_74476b12a0_b92108d7e79b4639b9e4b013b0689cb6"
+    },
+    "project_version": "0.4.0rc2",
+    "release": {
+      "bootstrap": {
+        "ci95_lower": -0.0940965242881072,
+        "ci95_upper": -0.036934673366834175,
+        "cluster_count": 398,
+        "mean_harm_reduction_per_case": -0.06377721943048577,
+        "probability_improvement": 0.0,
+        "resamples": 10000,
+        "resampling_unit": "group"
+      },
+      "claim_boundary": "controlled TradeOps-Sim only",
+      "gate_thresholds": {
+        "manual_capacity_tolerance": 0.005,
+        "max_hold_rate": 0.18,
+        "max_macro_f1_regression": 0.005,
+        "max_stress_harm_ratio": 1.2,
+        "max_worst_slice_macro_f1_regression": 0.05
+      },
+      "gates": {
+        "critical_false_greenlight": false,
+        "data_quality": true,
+        "evidence_precision": true,
+        "hold_rate": true,
+        "manual_intervention_capacity": true,
+        "paired_ci_excludes_no_improvement": false,
+        "relative_harm_improvement": false,
+        "stress_harm_non_regression": false,
+        "stress_manual_intervention_capacity": false,
+        "stress_predictive_non_regression": true,
+        "unauthorized_action_zero": true,
+        "worst_slice_non_regression": true
+      },
+      "predictive_champion": "C5",
+      "production_champion": "C1",
+      "rationale": "C5 was not promoted; failed gates: relative_harm_improvement, paired_ci_excludes_no_improvement, critical_false_greenlight, stress_harm_non_regression, stress_manual_intervention_capacity. C1 remains the production reference.",
+      "relative_harm_improvement": -0.8762945914844646,
+      "review_capacity": 0.2,
+      "safety_champion": "C3",
+      "status": "HOLD",
+      "stress": {
+        "c1_macro_f1": 0.9418533319354363,
+        "c1_residual_harm_per_1000": 128.24858757062148,
+        "c5_macro_f1": 0.9409142654636943,
+        "c5_residual_harm_per_1000": 364.26553672316385,
+        "harm_ratio": 2.8403083700440526,
+        "macro_f1_delta": -0.0009390664717420227
+      },
+      "unauthorized_action_count": 0,
+      "worst_slice_delta": -0.009784207821702862
+    },
+    "release_decision_sha256": "ee609382d48223611f0191e5038f5f550c8d44885f23994cf4a736347af0b562",
+    "run_id": "finopsr_20260726T201400Z_74476b12a0_b92108d7e79b4639b9e4b013b0689cb6"
+  },
+  "orchestration": {
+    "artifact_manifest_sha256": "9ebe097a85466af09f7e97d8ee93d209629a05765c6807094ab480d48debf87d",
+    "metrics": {
+      "core_status": "PASS",
+      "crash_replay": {
+        "crash_observed": true,
+        "effect_count": 1,
+        "recovered": true
+      },
+      "duplicate_effect_count": 0,
+      "expectation_match_rate": 1.0,
+      "external_execution_count": 0,
+      "langgraph_parity_rate": 1.0,
+      "langgraph_runtime_available": true,
+      "locked": true,
+      "reference_parity_rate": 1.0,
+      "released_trace_immutability_rate": 1.0,
+      "require_langgraph": true,
+      "scenario_count": 9,
+      "schema_version": "1.0",
+      "status": "PASS"
+    },
+    "qualification_metrics_sha256": "411c96c62c025c70585a9bf5724d86d9a69269651a6961094291148c1dc0da6e",
+    "verification": {
+      "checked_files": 4,
+      "core_status": "PASS",
+      "langgraph_status": "PASS",
+      "qualification_metrics_sha256": "411c96c62c025c70585a9bf5724d86d9a69269651a6961094291148c1dc0da6e",
+      "scenario_count": 9,
+      "schema_version": "1.0",
+      "status": "PASS"
+    }
+  },
+  "package_candidate_version": "0.4.0rc2",
+  "schema_version": "1.0",
+  "upstream": {
+    "identity": {
+      "reconstruction_status": "PASS",
+      "role": "IMMUTABLE_STAGE4_UPSTREAM",
+      "schema_version": "1.0",
+      "source_bytes": 2884587891,
+      "source_file": "JPMC01-FinOps-R_after_stage3_v1r1_source_snapshot.zip",
+      "source_sha256": "c6c212540e2b37acd8cdbc809a9b5c3a41948aadb30416f47b5f8f7ad30ceefa",
+      "zip_entry_count": 25955
+    },
+    "identity_file_sha256": "7df285db812915aaa6255a0fd4cf08f7f6ab5ebb2cb25378dfa9db7b380eb1ee"
+  }
+}

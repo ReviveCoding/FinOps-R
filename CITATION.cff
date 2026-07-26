@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use FinOps-R, cite this software release."
+title: "FinOps-R: Risk-controlled post-trade exception resolution benchmark"
+type: software
+authors:
+  - family-names: Bae
+    given-names: Jinwoo
+version: 0.4.0rc3
+date-released: 2026-07-20
+license: MIT

@@ -1,0 +1,113 @@
+{
+  "schema_version": "2.0",
+  "project_name": "FinOps-R",
+  "candidate_version": "0.2.0rc4",
+  "candidate_classification": "CONDITIONALLY_COMPLETE",
+  "generated_at_utc": "2026-07-18T20:07:21Z",
+  "source": {
+    "commit": null,
+    "git_status": "NOT_APPLICABLE_NOT_A_GIT_REPOSITORY",
+    "baseline_source_fingerprint_sha256": "f4c3915354845db63351bfb0364adda7852ac9fe98a498b51c2446f3f7706430",
+    "candidate_source_fingerprint_sha256": "3570a94286d055f532b8366af4df3aabc1acaf8edf36786aaaa91893d2cf94ca",
+    "fingerprint_scope": "47 declared source/config/test/doc files; excludes handoff, archives, generated runs, caches, build and egg metadata",
+    "dirty_diff_checksum": null,
+    "dirty_diff_reason": "No Git metadata was supplied; baseline and candidate content fingerprints are the reproducible substitute."
+  },
+  "runtime": {
+    "os": "Linux x86_64",
+    "python": "3.12.13",
+    "dependency_manifest": "requirements-lock.txt",
+    "dependency_manifest_sha256": "de408e2afcb71f6e2e93395ab4a41658846c20de67eec42556ab78de12d619c1",
+    "supported_environment_claims": [
+      {"environment": "Linux Python 3.12 exact lock", "evidence": "E3_CLEAN_INSTALL_AND_RELOAD"},
+      {"environment": "Linux/Windows Python 3.11/3.12", "evidence": "E1_CI_MATRIX_DEFINED_ONLY"},
+      {"environment": "GPU", "evidence": "NOT_APPLICABLE_NO_EXECUTABLE_GPU_PATH"}
+    ]
+  },
+  "entrypoints": {
+    "cli": "finops-r = finops_r.cli:main",
+    "api_factory": "finops_r.api:create_app",
+    "qualification_linux": "scripts/qualify.sh",
+    "qualification_windows": "scripts/qualify.ps1"
+  },
+  "dataset_fixture": {
+    "dataset": "TradeOps-Sim controlled synthetic data",
+    "canonical_cases": 12000,
+    "fixture": "data/fixtures/sample_case.json",
+    "claim_boundary": "No bank production, compliance, external execution, or monetary-impact claim."
+  },
+  "canonical_run": {
+    "run_id": "finopsr_20260718T195414Z_0588f8c980",
+    "path": "artifacts/runs/finopsr_20260718T195414Z_0588f8c980",
+    "tracked_artifacts": 59,
+    "integrity_status": "PASS",
+    "artifact_manifest_sha256": "604aa9762cf277f9384e84431ffab64f18267160e73f36f4a1259720182e02fc",
+    "release_decision_sha256": "98ff1f5ecc90ac4b1f694fdde550b31c332e9aed972e297f8fdd6ff52bc5e02e",
+    "production_bundle_sha256": "0c9dd07975765a8d9ba7a082a360efef88fb0f366cd3e5a6a40db9d0f21776aa"
+  },
+  "baseline_metrics": {
+    "candidate": "C1",
+    "macro_f1": 0.9631043055085483,
+    "residual_harm_per_1000": 74.74874371859298,
+    "manual_intervention_rate": 0.19095477386934673
+  },
+  "final_metrics": {
+    "point_estimate_champion": {"candidate": "C3", "macro_f1": 0.9655825647695797, "residual_harm_per_1000": 68.21608040201005},
+    "advanced_candidate": {"candidate": "C5", "macro_f1": 0.9644875673058387, "residual_harm_per_1000": 136.93467336683418, "relative_harm_improvement_vs_c1": -0.8319327731092435},
+    "paired_c1_minus_c5_harm_ci95": [-0.09271356783919599, -0.03546901172529314],
+    "bootstrap_resampling_unit": "entity_group",
+    "bootstrap_cluster_count": 398,
+    "stress_c5_to_c1_harm_ratio": 2.564153769345981,
+    "production_fallback": "C1",
+    "release_status": "HOLD"
+  },
+  "gates_and_tolerances": {
+    "primary": "C5 residual harm per 1,000 must beat C1 at fixed review capacity",
+    "min_relative_harm_improvement": 0.05,
+    "paired_ci_must_exclude_no_improvement": true,
+    "max_macro_f1_regression": 0.005,
+    "max_worst_slice_macro_f1_regression": 0.05,
+    "max_stress_harm_ratio": 1.2,
+    "manual_capacity_tolerance": 0.005,
+    "failed_gates": ["relative_harm_improvement", "paired_ci_excludes_no_improvement", "critical_false_greenlight", "worst_slice_non_regression", "stress_harm_non_regression", "stress_manual_intervention_capacity"]
+  },
+  "tests_and_evidence": {
+    "source_tests": {"passed": 43, "subtests_passed": 14, "failed": 0, "skipped": 0, "coverage_percent": 86.44},
+    "type_check": {"tool": "mypy 1.20.2", "files": 15, "issues": 0},
+    "lint": "PASS",
+    "format": "PASS",
+    "build": "PASS",
+    "clean_wheel_tests": {"passed": 43, "subtests_passed": 14, "failed": 0, "skipped": 0},
+    "clean_sdist_tests": {"passed": 43, "subtests_passed": 14, "failed": 0, "skipped": 0},
+    "clean_wheel_verify": "PASS_59_OF_59",
+    "clean_wheel_assess": "PASS",
+    "smoke_e2e": "PASS_3600_CASES",
+    "full_e2e": "PASS_12000_CASES",
+    "concurrent_publication": "PASS_ABSENT_OR_FULLY_VERIFIED",
+    "injected_copy_failure": "PASS_NO_PUBLIC_DESTINATION_NO_HIDDEN_RESIDUE",
+    "dependency_audit": "PASS_NO_KNOWN_VULNERABILITIES",
+    "bandit_medium_high": "PASS_NO_FINDINGS"
+  },
+  "build_artifacts": [
+    {"path": "dist/finops_r-0.2.0rc4-py3-none-any.whl", "sha256": "691e967677f7155ae6f935347823d03c44af6761357f6cb1c90bf3c78055cffb"},
+    {"path": "dist/finops_r-0.2.0rc4.tar.gz", "sha256": "81b0a0acb920fab90dcf5a819b2274f752a56205c8a7df86b51c9bd77ebc7013"}
+  ],
+  "known_limits": [
+    "C5 fails the locked superiority and safety gates; the framework correctly preserves C1.",
+    "The simulator result does not establish performance on bank data or workflows.",
+    "Windows, Python 3.11, and GitHub-hosted runners are configured but were not executed locally.",
+    "Joblib retains pickle semantics and must not load untrusted artifacts.",
+    "No multi-seed superiority claim is made; C3 point-estimate improvement remains unconfirmed.",
+    "The exact lock has no distribution hashes; a zero-finding vulnerability audit is not a signed supply chain."
+  ],
+  "unresolved_items": [
+    {"severity": "RELEASE_BLOCKER_MODEL", "item": "Redesign C5 evidence/capacity policy and re-evaluate without tuning on the locked test set."},
+    {"severity": "QUALIFICATION", "item": "Execute the checked-in Ubuntu/Windows Python 3.11/3.12 CI matrix from an immutable Git commit."}
+  ],
+  "evidence_level": "E3",
+  "next_qualification_gates": [
+    "Create immutable Git commit and execute external CI matrix (E4).",
+    "Run preregistered multi-seed C3 study on untouched evaluation seeds.",
+    "Keep C5 HOLD unless every locked performance and safety gate passes."
+  ]
+}

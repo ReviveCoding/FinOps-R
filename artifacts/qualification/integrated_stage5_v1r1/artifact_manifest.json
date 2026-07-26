@@ -1,0 +1,17 @@
+[
+  {
+    "bytes": 646,
+    "path": "INTEGRATED_QUALIFICATION_REPORT.md",
+    "sha256": "665cc3f0d5ef42c11343325d79cbcd9b59f256b76d6554bad9f8d3a14e81264c"
+  },
+  {
+    "bytes": 827,
+    "path": "integrated_qualification_decision.json",
+    "sha256": "aefc61f55d59f187984bfeca306bb4367d575d0dcc10f713635c2c8a939e6c44"
+  },
+  {
+    "bytes": 5522,
+    "path": "qualification_input_snapshot.json",
+    "sha256": "6ba2431608ced851cac2a557d5a3d25671c98b28febc1788e83414c37107ae40"
+  }
+]

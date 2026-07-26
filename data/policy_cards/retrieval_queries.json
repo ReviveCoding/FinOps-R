@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "queries": [
+    {
+      "query_id": "q_tplus1_cycle",
+      "text": "standard settlement first business day T+1 covered broker dealer transaction",
+      "decision_time": "2026-01-15T15:00:00Z",
+      "relevant_ids": [
+        "sec.rule15c6-1.standard_cycle.tplus1"
+      ],
+      "top_k": 3
+    },
+    {
+      "query_id": "q_legacy_tplus2_cycle",
+      "text": "historical standard settlement two business days T+2",
+      "decision_time": "2024-05-27T15:00:00Z",
+      "relevant_ids": [
+        "sec.rule15c6-1.standard_cycle.tplus2.legacy"
+      ],
+      "top_k": 3
+    },
+    {
+      "query_id": "q_late_allocation",
+      "text": "institutional allocation missing by end of trade date",
+      "decision_time": "2026-01-15T20:00:00Z",
+      "relevant_ids": [
+        "sec.rule15c6-2.aca.trade_date"
+      ],
+      "top_k": 3
+    },
+    {
+      "query_id": "q_affirmation_delay",
+      "text": "institutional affirmation delay investigate and address on trade date",
+      "decision_time": "2026-01-15T20:00:00Z",
+      "relevant_ids": [
+        "sec.rule15c6-2.discrepancy_delays"
+      ],
+      "top_k": 3
+    },
+    {
+      "query_id": "q_dtcc_affirmation_cutoff",
+      "text": "DTCC 9:00 p.m. Eastern affirmation cutoff trade date",
+      "decision_time": "2026-01-15T20:00:00Z",
+      "relevant_ids": [
+        "dtcc.trade_affirmation.cutoff.tplus1"
+      ],
+      "top_k": 3
+    },
+    {
+      "query_id": "q_stale_ssi",
+      "text": "stale standing settlement instruction reference data matching failure",
+      "decision_time": "2026-01-15T20:00:00Z",
+      "relevant_ids": [
+        "dtcc.ssi.reference_data.tplus1"
+      ],
+      "top_k": 3
+    },
+    {
+      "query_id": "q_record_timestamps",
+      "text": "records date and time stamp allocation affirmation sent received",
+      "decision_time": "2026-01-15T20:00:00Z",
+      "relevant_ids": [
+        "sec.rule204-2.aca.timestamps"
+      ],
+      "top_k": 3
+    }
+  ]
+}

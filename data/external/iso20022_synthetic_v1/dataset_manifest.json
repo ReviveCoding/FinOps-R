@@ -1,0 +1,62 @@
+{
+  "archive": {
+    "archive": "ISO20022_Payments_Analytics_Synthetic_v1.zip",
+    "compressed_bytes": 391571,
+    "maximum_compression_ratio": 4.180281299799072,
+    "member_count": 3,
+    "member_sample": [
+      "iso20022_analytics.csv",
+      "pacs002.csv",
+      "pacs008.csv"
+    ],
+    "members_truncated": false,
+    "sha256": "3d1b5885c874a2fc7d937c7bc11ab5d80b806d5aabf256474592ae2ea0888024",
+    "status": "PASS",
+    "uncompressed_bytes": 1469765
+  },
+  "claim_boundary": "Suitable for data-contract and workflow demonstrations only; not evidence of production payment performance or ISO 20022 conformance.",
+  "classification": "user-provided project-generated synthetic ISO 20022-like analytics",
+  "dataset_id": "iso20022_payments_analytics_synthetic_v1",
+  "official_iso_dataset": false,
+  "production_bank_data": false,
+  "schema_version": "1.0",
+  "source_archive": "ISO20022_Payments_Analytics_Synthetic_v1.zip",
+  "source_sha256": "3d1b5885c874a2fc7d937c7bc11ab5d80b806d5aabf256474592ae2ea0888024",
+  "temporal_split_counts": {
+    "test": 1000,
+    "train": 3000,
+    "validation": 1000
+  },
+  "validation": {
+    "currency_counts": {
+      "EUR": 1726,
+      "GBP": 1618,
+      "USD": 1656
+    },
+    "date_range": {
+      "end": "2025-01-30",
+      "start": "2025-01-01"
+    },
+    "rejection_reason_counts": {
+      "AB05": 7,
+      "AC01": 92,
+      "AG01": 29,
+      "AM04": 60,
+      "AM05": 18,
+      "BE04": 42,
+      "FF01": 23,
+      "MD07": 22,
+      "RC01": 27
+    },
+    "row_counts": {
+      "iso20022_analytics.csv": 5000,
+      "pacs002.csv": 5000,
+      "pacs008.csv": 5000
+    },
+    "status": "PASS",
+    "status_counts": {
+      "ACSP": 4680,
+      "RJCT": 320
+    }
+  }
+}

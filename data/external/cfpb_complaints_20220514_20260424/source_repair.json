@@ -1,0 +1,11 @@
+{
+  "clean_csv_bytes": 1882740229,
+  "clean_csv_sha256": "7e67e619c39baecc75d41091cb7a6d4b9f9e9fd700e0d406c9cc1f3a7156b8e1",
+  "original_archive_bytes": 189815959,
+  "original_archive_sha256": "ead74e491359c5e20c61321fefaf442563d49de03fcf350e492c9ee65679ec3d",
+  "original_csv_bytes": 1882740319,
+  "original_csv_sha256": "0aad0c5a93b8afdab9160089e710515bb3b5fe81bad144fd69764e7deca46326",
+  "quarantined_bytes": 90,
+  "quarantined_sha256": "9e304012965a8948e1edda00f0f0ed475bc4788a54abdb0b2875fc214e5023df",
+  "repair_type": "remove_exact_truncated_final_record"
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "locked": true,
+  "qualification_id": "finops-r-integrated-stage5-v1",
+  "claim_boundary": "controlled TradeOps-Sim and simulation-only orchestration",
+  "model_contract": {
+    "expected_release_status": "HOLD",
+    "expected_production_champion": "C1",
+    "required_unauthorized_action_count": 0
+  },
+  "orchestration_contract": {
+    "expected_status": "PASS",
+    "expected_scenario_count": 9,
+    "required_duplicate_effect_count": 0,
+    "required_external_execution_count": 0,
+    "required_trace_immutability_rate": 1.0,
+    "require_langgraph": true
+  },
+  "release_contract": {
+    "local_evidence_level": "E3",
+    "hosted_ci_required_for_final_release": true,
+    "allowed_final_release_status_without_hosted_ci": "BLOCKED_EXTERNAL_CI"
+  },
+  "excluded_core_datasets": [
+    "CFPB complaints",
+    "Criteo uplift",
+    "DocVQA",
+    "EDGAR financial summaries",
+    "FUNSD",
+    "HMDA",
+    "Instacart",
+    "Kleister NDA",
+    "M5",
+    "SEC financial statements"
+  ]
+}

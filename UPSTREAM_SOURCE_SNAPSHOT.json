@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "source_file": "JPMC01-FinOps-R_after_stage3_v1r1_source_snapshot.zip",
+  "source_bytes": 2884587891,
+  "source_sha256": "c6c212540e2b37acd8cdbc809a9b5c3a41948aadb30416f47b5f8f7ad30ceefa",
+  "zip_entry_count": 25955,
+  "reconstruction_status": "PASS",
+  "role": "IMMUTABLE_STAGE4_UPSTREAM"
+}

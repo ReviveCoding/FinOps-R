@@ -1,0 +1,79 @@
+{
+  "activity_counts": {
+    "A_Accepted": 31509,
+    "A_Cancelled": 10431,
+    "A_Complete": 31362,
+    "A_Concept": 31509,
+    "A_Create Application": 31509,
+    "A_Denied": 3753,
+    "A_Incomplete": 23055,
+    "A_Pending": 17228,
+    "A_Submitted": 20423,
+    "A_Validating": 38816,
+    "O_Accepted": 17228,
+    "O_Cancelled": 20898,
+    "O_Create Offer": 42995,
+    "O_Created": 42995,
+    "O_Refused": 4695,
+    "O_Returned": 23305,
+    "O_Sent (mail and online)": 39707,
+    "O_Sent (online only)": 2026,
+    "W_Assess potential fraud": 3282,
+    "W_Call after offers": 191092,
+    "W_Call incomplete files": 168529,
+    "W_Complete application": 148900,
+    "W_Handle leads": 47264,
+    "W_Personal Loan collection": 22,
+    "W_Shortened completion ": 238,
+    "W_Validate application": 209496
+  },
+  "counts": {
+    "applications": 31509,
+    "events": 1202267,
+    "offers": 42995,
+    "originators": 149
+  },
+  "dataset": "BPI Challenge 2017",
+  "doi": "10.4121/uuid:5f3067df-f10b-45da-b98b-86ae4c7a310b",
+  "event_origin_counts": {
+    "Application": 239595,
+    "Offer": 193849,
+    "Workflow": 768823
+  },
+  "files": {
+    "applications.csv": {
+      "bytes": 7876088,
+      "sha256": "f327a9f4b28c83e56a9755d61ce616ff7e4de162387b778233a8f3d057193478"
+    },
+    "events.csv.gz": {
+      "bytes": 37797885,
+      "sha256": "b758be0b6663bc4b3a77de68043fdbec2b5a380bbb1330399d4217914edbe5bc"
+    },
+    "offers.csv": {
+      "bytes": 4402448,
+      "sha256": "3b0f3af95188a62443293bc087b4ec9c2abbc029050cb8ff82e9e2db3deea0ae"
+    }
+  },
+  "privacy": {
+    "raw_org_resource_published": false,
+    "resource_transform": "sha256-derived deterministic pseudonym",
+    "warning": "Pseudonymization is not a claim of irreversible anonymization."
+  },
+  "source_archive": {
+    "bytes": 29658747,
+    "md5": "10b37a2f78e870d78406198403ff13d2",
+    "name": "BPI Challenge 2017.xes.gz",
+    "sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249"
+  },
+  "split": {
+    "counts": {
+      "test": 6302,
+      "train": 18905,
+      "validation": 6302
+    },
+    "ordering": "first_event_timestamp_utc",
+    "train_end_inclusive": "2016-08-16T14:16:49.059Z",
+    "unit": "application",
+    "validation_end_inclusive": "2016-10-18T21:58:13.713Z"
+  }
+}

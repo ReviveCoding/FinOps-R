@@ -1,0 +1,24 @@
+{
+  "feature_names": [
+    "confidence_shortfall",
+    "citation_shortfall",
+    "verification_rejected",
+    "planner_abstained",
+    "retrieval_score_shortfall"
+  ],
+  "intercept": -1.706335687144,
+  "mode": "VETO_ONLY",
+  "model_type": "LOGISTIC_RISK_SCORER",
+  "schema_version": "1.0",
+  "threshold": 0.658808232744,
+  "threshold_snapshot_sha256": "4587d5147c4cb4658094247f144d1e075c9fcf2b3b71e95c39e36dbcd5bea042",
+  "training_snapshot_sha256": "f1b1e023743fda71c61ab2448f2e7524be6c8dbb087777e8bf0fb2f662ad1e13",
+  "verifier_id": "finops_learned_risk_verifier_stage4_v1",
+  "weights": [
+    1.218720359735,
+    1.148716245423,
+    2.38919531403,
+    0.254963512631,
+    1.814545866187
+  ]
+}

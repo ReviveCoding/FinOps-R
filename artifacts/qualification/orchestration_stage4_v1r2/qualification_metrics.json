@@ -1,0 +1,20 @@
+{
+  "core_status": "PASS",
+  "crash_replay": {
+    "crash_observed": true,
+    "effect_count": 1,
+    "recovered": true
+  },
+  "duplicate_effect_count": 0,
+  "expectation_match_rate": 1.0,
+  "external_execution_count": 0,
+  "langgraph_parity_rate": 1.0,
+  "langgraph_runtime_available": true,
+  "locked": true,
+  "reference_parity_rate": 1.0,
+  "released_trace_immutability_rate": 1.0,
+  "require_langgraph": true,
+  "scenario_count": 9,
+  "schema_version": "1.0",
+  "status": "PASS"
+}

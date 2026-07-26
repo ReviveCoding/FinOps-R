@@ -1,0 +1,142 @@
+{
+  "schema_version": "4.0",
+  "benchmark_id": "finops_qwen_zero_shot_qualification_holdout_v5",
+  "split": "QUALIFICATION_HOLDOUT",
+  "tuning_prohibited": true,
+  "prompt_excludes_expected_labels": true,
+  "locked_at_utc": "2026-07-23T15:00:00Z",
+  "scenarios": [
+    {
+      "scenario_id": "v5q_supported_allocation",
+      "query_id": "multi_allocation_cutoff",
+      "case_id": "S2V5-Q001",
+      "decision_time": "2026-03-11T18:05:00Z",
+      "predicted_cause": "LATE_ALLOCATION",
+      "candidate_action": "REQUEST_ALLOCATION",
+      "permitted_actions": ["REQUEST_ALLOCATION", "HOLD_FOR_REVIEW"],
+      "expected_action": "REQUEST_ALLOCATION",
+      "expected_hold": false
+    },
+    {
+      "scenario_id": "v5q_supported_affirmation",
+      "query_id": "multi_timestamp_affirmation",
+      "case_id": "S2V5-Q002",
+      "decision_time": "2026-03-11T20:10:00Z",
+      "predicted_cause": "MISSING_AFFIRMATION",
+      "candidate_action": "REQUEST_AFFIRMATION",
+      "permitted_actions": ["REQUEST_AFFIRMATION", "HOLD_FOR_REVIEW"],
+      "expected_action": "REQUEST_AFFIRMATION",
+      "expected_hold": false
+    },
+    {
+      "scenario_id": "v5q_supported_ssi",
+      "query_id": "para_ssi",
+      "case_id": "S2V5-Q003",
+      "decision_time": "2026-03-11T19:25:00Z",
+      "predicted_cause": "STALE_SSI",
+      "candidate_action": "REQUEST_SSI_REFRESH",
+      "permitted_actions": ["REQUEST_SSI_REFRESH", "HOLD_FOR_REVIEW"],
+      "expected_action": "REQUEST_SSI_REFRESH",
+      "expected_hold": false
+    },
+    {
+      "scenario_id": "v5q_supported_economic_field",
+      "query_id": "para_discrepancy",
+      "case_id": "S2V5-Q004",
+      "decision_time": "2026-03-11T19:35:00Z",
+      "predicted_cause": "PRICE_MISMATCH",
+      "candidate_action": "CORRECT_ECONOMIC_FIELD",
+      "permitted_actions": ["CORRECT_ECONOMIC_FIELD", "HOLD_FOR_REVIEW"],
+      "expected_action": "CORRECT_ECONOMIC_FIELD",
+      "expected_hold": false
+    },
+    {
+      "scenario_id": "v5q_supported_security_identifier",
+      "query_id": "hard_discrepancy",
+      "case_id": "S2V5-Q005",
+      "decision_time": "2026-03-11T19:40:00Z",
+      "predicted_cause": "SECURITY_ID_MISMATCH",
+      "candidate_action": "CORRECT_SECURITY_IDENTIFIER",
+      "permitted_actions": ["CORRECT_SECURITY_IDENTIFIER", "HOLD_FOR_REVIEW"],
+      "expected_action": "CORRECT_SECURITY_IDENTIFIER",
+      "expected_hold": false
+    },
+    {
+      "scenario_id": "v5q_supported_monitor",
+      "query_id": "time_current_monday",
+      "case_id": "S2V5-Q006",
+      "decision_time": "2026-03-11T14:15:00Z",
+      "predicted_cause": "NO_EXCEPTION",
+      "candidate_action": "NO_ACTION_MONITOR",
+      "permitted_actions": ["NO_ACTION_MONITOR", "HOLD_FOR_REVIEW"],
+      "expected_action": "NO_ACTION_MONITOR",
+      "expected_hold": false
+    },
+    {
+      "scenario_id": "v5q_unpermitted_allocation",
+      "query_id": "multi_allocation_cutoff",
+      "case_id": "S2V5-Q007",
+      "decision_time": "2026-03-11T20:20:00Z",
+      "predicted_cause": "LATE_ALLOCATION",
+      "candidate_action": "REQUEST_ALLOCATION",
+      "permitted_actions": ["HOLD_FOR_REVIEW"],
+      "expected_action": "HOLD_FOR_REVIEW",
+      "expected_hold": true
+    },
+    {
+      "scenario_id": "v5q_unpermitted_counterparty",
+      "query_id": "multi_ssi_discrepancy",
+      "case_id": "S2V5-Q008",
+      "decision_time": "2026-03-11T20:25:00Z",
+      "predicted_cause": "COUNTERPARTY_MISMATCH",
+      "candidate_action": "CORRECT_COUNTERPARTY",
+      "permitted_actions": ["HOLD_FOR_REVIEW"],
+      "expected_action": "HOLD_FOR_REVIEW",
+      "expected_hold": true
+    },
+    {
+      "scenario_id": "v5q_unsupported_funding",
+      "query_id": "para_tplus1",
+      "case_id": "S2V5-Q009",
+      "decision_time": "2026-03-11T20:30:00Z",
+      "predicted_cause": "FUNDING_SHORTAGE",
+      "candidate_action": "REQUEST_FUNDING_REVIEW",
+      "permitted_actions": ["REQUEST_FUNDING_REVIEW", "HOLD_FOR_REVIEW"],
+      "expected_action": "HOLD_FOR_REVIEW",
+      "expected_hold": true
+    },
+    {
+      "scenario_id": "v5q_unsupported_compliance",
+      "query_id": "hard_timestamps",
+      "case_id": "S2V5-Q010",
+      "decision_time": "2026-03-11T20:35:00Z",
+      "predicted_cause": "COMPLIANCE_HOLD",
+      "candidate_action": "ESCALATE_COMPLIANCE_HOLD",
+      "permitted_actions": ["ESCALATE_COMPLIANCE_HOLD", "HOLD_FOR_REVIEW"],
+      "expected_action": "HOLD_FOR_REVIEW",
+      "expected_hold": true
+    },
+    {
+      "scenario_id": "v5q_unsupported_securities",
+      "query_id": "time_future_distractor",
+      "case_id": "S2V5-Q011",
+      "decision_time": "2026-12-31T23:59:59Z",
+      "predicted_cause": "SECURITIES_SHORTAGE",
+      "candidate_action": "REQUEST_SECURITIES_REVIEW",
+      "permitted_actions": ["REQUEST_SECURITIES_REVIEW", "HOLD_FOR_REVIEW"],
+      "expected_action": "HOLD_FOR_REVIEW",
+      "expected_hold": true
+    },
+    {
+      "scenario_id": "v5q_record_only_hold",
+      "query_id": "multi_timestamp_affirmation",
+      "case_id": "S2V5-Q012",
+      "decision_time": "2026-03-11T20:45:00Z",
+      "predicted_cause": "DUPLICATE_AMENDMENT",
+      "candidate_action": "RETRACT_DUPLICATE_AMENDMENT",
+      "permitted_actions": ["RETRACT_DUPLICATE_AMENDMENT", "HOLD_FOR_REVIEW"],
+      "expected_action": "HOLD_FOR_REVIEW",
+      "expected_hold": true
+    }
+  ]
+}

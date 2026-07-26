@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "cards": [
+    {
+      "card_id": "dtcc.ssi.reference_data.tplus1",
+      "title": "T+1 standing settlement instruction data quality",
+      "source_title": "T+1 Securities Settlement Industry Implementation Playbook",
+      "source_url": "https://www.dtcc.com/-/media/Files/PDFs/T2/T1-Industry-Implementation-Playbook.pdf",
+      "source_date": "2023-12-31",
+      "effective_from": "2024-05-28T00:00:00Z",
+      "effective_to": null,
+      "jurisdiction": "United States",
+      "applicability": "Synthetic T+1 scenarios with missing, stale, or inconsistent standing settlement instructions.",
+      "paraphrase": "Industry guidance recommends timely updates and quality review of standing settlement instruction reference data before settlement; stale instruction data can impair matching.",
+      "allowed_actions": [
+        "REQUEST_SSI_REFRESH",
+        "HOLD_FOR_REVIEW"
+      ],
+      "tags": [
+        "settlement",
+        "ssi",
+        "stale_reference_data",
+        "tplus1"
+      ],
+      "authority": "INDUSTRY_GUIDANCE",
+      "legal_interpretation_prohibited": true
+    },
+    {
+      "card_id": "dtcc.trade_affirmation.cutoff.tplus1",
+      "title": "DTCC institutional trade affirmation cutoff",
+      "source_title": "T+1 Securities Settlement Industry Implementation Playbook",
+      "source_url": "https://www.dtcc.com/-/media/Files/PDFs/T2/T1-Industry-Implementation-Playbook.pdf",
+      "source_date": "2023-12-31",
+      "effective_from": "2024-05-28T00:00:00Z",
+      "effective_to": null,
+      "jurisdiction": "United States",
+      "applicability": "Synthetic DTCC-eligible institutional-trade scenarios; the simulator must not generalize the cutoff to every trade or venue.",
+      "paraphrase": "The playbook describes a 9:00 p.m. Eastern Time trade-date affirmation cutoff for the referenced DTCC institutional workflow and recommends earlier allocation so confirmation and affirmation have sufficient time.",
+      "allowed_actions": [
+        "REQUEST_ALLOCATION",
+        "REQUEST_AFFIRMATION",
+        "HOLD_FOR_REVIEW"
+      ],
+      "tags": [
+        "affirmation",
+        "allocation",
+        "cutoff",
+        "dtcc",
+        "tplus1"
+      ],
+      "authority": "INDUSTRY_GUIDANCE",
+      "legal_interpretation_prohibited": true
+    },
+    {
+      "card_id": "sec.rule15c6-1.standard_cycle.tplus1",
+      "title": "Standard settlement cycle for most covered broker-dealer transactions",
+      "source_title": "Shortening the Securities Transaction Settlement Cycle: Small Entity Compliance Guide",
+      "source_url": "https://www.sec.gov/investment/settlement-cycle-small-entity-compliance-guide-15c6-1-15c6-2-204-2",
+      "source_date": "2024-08-22",
+      "effective_from": "2024-05-28T00:00:00Z",
+      "effective_to": null,
+      "jurisdiction": "United States",
+      "applicability": "Synthetic scenarios representing transactions within the described Rule 15c6-1 scope; enumerated exceptions remain outside this card.",
+      "paraphrase": "For most covered broker-dealer transactions, the amended standard cycle generally does not permit payment and delivery later than the first business day after trade date unless the parties expressly agree otherwise at the transaction time.",
+      "allowed_actions": [
+        "NO_ACTION_MONITOR",
+        "HOLD_FOR_REVIEW"
+      ],
+      "tags": [
+        "rule15c6-1",
+        "settlement",
+        "tplus1"
+      ],
+      "authority": "REGULATOR",
+      "legal_interpretation_prohibited": true
+    },
+    {
+      "card_id": "sec.rule15c6-1.standard_cycle.tplus2.legacy",
+      "title": "Legacy standard settlement cycle before T+1 compliance",
+      "source_title": "Amendment to Securities Transaction Settlement Cycle: Small Entity Compliance Guide",
+      "source_url": "https://www.sec.gov/resources-small-businesses/small-business-compliance-guides/amendment-securities-transaction-settlement-cycle-small-entity-compliance-guide",
+      "source_date": "2017-03-28",
+      "effective_from": "2017-09-05T00:00:00Z",
+      "effective_to": "2024-05-28T00:00:00Z",
+      "jurisdiction": "United States",
+      "applicability": "Historical synthetic scenarios before the May 28, 2024 T+1 compliance date.",
+      "paraphrase": "During this historical interval, the standard settlement cycle for most covered broker-dealer transactions was two business days after trade date.",
+      "allowed_actions": [
+        "NO_ACTION_MONITOR",
+        "HOLD_FOR_REVIEW"
+      ],
+      "tags": [
+        "legacy",
+        "rule15c6-1",
+        "settlement",
+        "tplus2"
+      ],
+      "authority": "REGULATOR",
+      "legal_interpretation_prohibited": true
+    },
+    {
+      "card_id": "sec.rule15c6-2.aca.trade_date",
+      "title": "Institutional allocation, confirmation, and affirmation timing",
+      "source_title": "Shortening the Securities Transaction Settlement Cycle: Small Entity Compliance Guide",
+      "source_url": "https://www.sec.gov/investment/settlement-cycle-small-entity-compliance-guide-15c6-1-15c6-2-204-2",
+      "source_date": "2024-08-22",
+      "effective_from": "2024-05-28T00:00:00Z",
+      "effective_to": null,
+      "jurisdiction": "United States",
+      "applicability": "Synthetic institutional-trade scenarios between broker-dealers and institutional customers within the described Rule 15c6-2 scope.",
+      "paraphrase": "Rule 15c6-2 is designed to promote completion of allocations, confirmations, and affirmations as soon as technologically practicable and no later than the end of trade date through specified agreements or reasonably designed policies and procedures.",
+      "allowed_actions": [
+        "REQUEST_ALLOCATION",
+        "REQUEST_AFFIRMATION",
+        "HOLD_FOR_REVIEW"
+      ],
+      "tags": [
+        "affirmation",
+        "allocation",
+        "confirmation",
+        "rule15c6-2",
+        "trade_date"
+      ],
+      "authority": "REGULATOR",
+      "legal_interpretation_prohibited": true
+    },
+    {
+      "card_id": "sec.rule15c6-2.discrepancy_delays",
+      "title": "Institutional-trade discrepancies and delays",
+      "source_title": "Shortening the Securities Transaction Settlement Cycle: Small Entity Compliance Guide",
+      "source_url": "https://www.sec.gov/investment/settlement-cycle-small-entity-compliance-guide-15c6-1-15c6-2-204-2",
+      "source_date": "2024-08-22",
+      "effective_from": "2024-05-28T00:00:00Z",
+      "effective_to": null,
+      "jurisdiction": "United States",
+      "applicability": "Synthetic institutional-trade scenarios used to test discrepancy escalation and delay handling.",
+      "paraphrase": "Policies and procedures under the described route should address prompt communication of trade information, investigation and adjustment of discrepancies, and identification and handling of allocation, affirmation, or confirmation delays.",
+      "allowed_actions": [
+        "REQUEST_ALLOCATION",
+        "REQUEST_AFFIRMATION",
+        "CORRECT_ECONOMIC_FIELD",
+        "CORRECT_COUNTERPARTY",
+        "CORRECT_SECURITY_IDENTIFIER",
+        "HOLD_FOR_REVIEW"
+      ],
+      "tags": [
+        "delay",
+        "discrepancy",
+        "institutional_trade",
+        "rule15c6-2"
+      ],
+      "authority": "REGULATOR",
+      "legal_interpretation_prohibited": true
+    },
+    {
+      "card_id": "sec.rule204-2.aca.timestamps",
+      "title": "Allocation and affirmation timestamp records",
+      "source_title": "Shortening the Securities Transaction Settlement Cycle: Small Entity Compliance Guide",
+      "source_url": "https://www.sec.gov/investment/settlement-cycle-small-entity-compliance-guide-15c6-1-15c6-2-204-2",
+      "source_date": "2024-08-22",
+      "effective_from": "2024-05-28T00:00:00Z",
+      "effective_to": null,
+      "jurisdiction": "United States",
+      "applicability": "Synthetic record-completeness scenarios for transactions described as subject to Rule 15c6-2(a).",
+      "paraphrase": "The compliance guide describes recordkeeping for confirmations plus sent or received allocations and affirmations, including date and time stamps for allocations and affirmations.",
+      "allowed_actions": [
+        "HOLD_FOR_REVIEW"
+      ],
+      "tags": [
+        "affirmation",
+        "allocation",
+        "recordkeeping",
+        "timestamp"
+      ],
+      "authority": "REGULATOR",
+      "legal_interpretation_prohibited": true
+    }
+  ]
+}

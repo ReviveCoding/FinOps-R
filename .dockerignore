@@ -1,0 +1,14 @@
+.git
+.github
+.venv
+.deps
+artifacts
+data/external
+data/generated
+dist
+build
+__pycache__
+*.pyc
+*.zip
+*.7z
+*.gz

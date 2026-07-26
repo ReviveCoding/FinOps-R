@@ -1,0 +1,129 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      expected_commit:
+        description: Full commit SHA that this E4 run must qualify
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  PYTHONHASHSEED: "0"
+  MPLCONFIGDIR: ${{ github.workspace }}/.mplconfig
+  FINOPS_EXPECTED_COMMIT: ${{ github.event.inputs.expected_commit || github.sha }}
+
+jobs:
+  test:
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.11", "3.12"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install cross-platform development environment
+        run: python -m pip install ".[dev,orchestration]"
+      - name: Record runner contract
+        run: |
+          python -VV
+          python -c "import platform; print(platform.platform()); print(platform.machine())"
+      - name: Verify dependency consistency
+        run: python -m pip check
+      - name: Test with branch coverage
+        run: python -m pytest --cov=finops_r --cov-report=term-missing --cov-fail-under=80
+      - name: Verify locked Stage 4 evidence
+        run: >-
+          python scripts/verify_orchestration_qualification_stage4.py
+          --artifact-dir artifacts/qualification/orchestration_stage4_v1r2
+      - name: Verify locked Stage 5 evidence
+        run: >-
+          python scripts/verify_integrated_qualification_stage5.py
+          --artifact-dir artifacts/qualification/integrated_stage5_v1r1
+      - name: Emit exact-commit E4 cell evidence
+        env:
+          FINOPS_MATRIX_PYTHON: ${{ matrix.python-version }}
+        run: >-
+          python scripts/write_e4_cell_evidence.py
+          --output e4-evidence/e4-cell-${{ runner.os }}-py${{ matrix.python-version }}.json
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: e4-cell-${{ runner.os }}-py${{ matrix.python-version }}
+          path: e4-evidence/*.json
+          if-no-files-found: error
+          retention-days: 30
+
+  locked-linux-quality-build:
+    timeout-minutes: 25
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install locked qualification environment
+        run: |
+          python -m pip install -r requirements-lock.txt
+          python -m pip install --no-build-isolation --no-deps .
+          python -m pip check
+      - name: Lint
+        run: ruff check .
+      - name: Format
+        run: ruff format --check .
+      - name: Type check
+        run: mypy
+      - name: Build wheel and source distribution
+        run: python -m build --no-isolation
+      - name: Verify wheel contents and installed CLI
+        run: |
+          python -m venv .artifact-venv
+          .artifact-venv/bin/python -m pip install dist/*.whl
+          .artifact-venv/bin/python -m pip check
+          .artifact-venv/bin/python -c "import finops_r; assert finops_r.__version__ == '0.4.0rc3'"
+          .artifact-venv/bin/finops-r --version
+          .artifact-venv/bin/finops-r --help
+          .artifact-venv/bin/finops-r data list
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: finops-r-distributions
+          path: dist/
+          if-no-files-found: error
+
+  smoke:
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install .
+      - name: Execute controlled end-to-end smoke experiment
+        run: finops-r run --config configs/smoke.json --output-root artifacts/ci-smoke
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: finops-r-smoke-evidence
+          path: artifacts/ci-smoke/
+          if-no-files-found: error
+          retention-days: 14

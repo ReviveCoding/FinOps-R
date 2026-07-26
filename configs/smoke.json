@@ -1,0 +1,42 @@
+{
+  "project": "FinOps-R",
+  "config_version": "0.3.0-smoke",
+  "seed": 20260717,
+  "n_cases": 1200,
+  "n_entities": 600,
+  "output_root": "artifacts/runs",
+  "review_capacity": 0.20,
+  "human_correction_probability": 0.85,
+  "review_cost": 0.10,
+  "hold_cost_fraction": 0.10,
+  "hold_fixed_cost": 0.10,
+  "critical_false_greenlight_limit": 0.08,
+  "evidence_precision_limit": 0.90,
+  "min_relative_harm_improvement": 0.03,
+  "max_macro_f1_regression": 0.005,
+  "max_worst_slice_macro_f1_regression": 0.05,
+  "max_stress_harm_ratio": 1.20,
+  "max_hold_rate": 0.18,
+  "manual_capacity_tolerance": 0.005,
+  "temperature_bounds": [0.35, 4.0],
+  "bootstrap_resamples": 500,
+  "specialty_resamples": 500,
+  "ensemble": {
+    "hist_max_iter": 40,
+    "hist_learning_rate": 0.08,
+    "hist_max_leaf_nodes": 31,
+    "extra_trees_estimators": 40,
+    "extra_trees_min_samples_leaf": 2,
+    "weight_hist": 0.60,
+    "weight_extra": 0.40
+  },
+  "rsop": {
+    "min_reference_count": 8,
+    "epsilon": 0.001
+  },
+  "action_envelope": {
+    "cumulative_probability": 0.82,
+    "max_candidates": 3,
+    "rule_expand_threshold": 0.65
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "claim_boundary": "controlled TradeOps-Sim and simulation-only orchestration",
+  "final_release_status": "BLOCKED_EXTERNAL_CI",
+  "gates": {
+    "crash_replay_exactly_once": true,
+    "duplicate_effect_zero": true,
+    "external_execution_zero": true,
+    "langgraph_parity": true,
+    "model_artifact_integrity": true,
+    "model_bundle_identity": true,
+    "model_claim_boundary": true,
+    "model_release_posture": true,
+    "released_trace_immutable": true,
+    "stage4_core_pass": true,
+    "stage4_verified": true,
+    "unauthorized_action_zero": true
+  },
+  "hosted_ci_status": "NOT_RUN",
+  "integrated_qualification_status": "PASS",
+  "local_evidence_level": "E3",
+  "model_promotion_status": "HOLD",
+  "production_champion": "C1",
+  "qualification_id": "finops-r-integrated-stage5-v1",
+  "schema_version": "1.0"
+}

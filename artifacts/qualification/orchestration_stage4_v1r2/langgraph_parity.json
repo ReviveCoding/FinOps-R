@@ -1,0 +1,58 @@
+{
+  "results": [
+    {
+      "parity": true,
+      "paused": false,
+      "scenario_id": "locked_allocation_simulate",
+      "status": "PASS"
+    },
+    {
+      "parity": true,
+      "paused": false,
+      "scenario_id": "locked_affirmation_simulate",
+      "status": "PASS"
+    },
+    {
+      "parity": true,
+      "paused": false,
+      "scenario_id": "locked_ssi_simulate",
+      "status": "PASS"
+    },
+    {
+      "parity": true,
+      "paused": true,
+      "scenario_id": "locked_correction_approve",
+      "status": "PASS"
+    },
+    {
+      "parity": true,
+      "paused": true,
+      "scenario_id": "locked_correction_reject",
+      "status": "PASS"
+    },
+    {
+      "parity": true,
+      "paused": false,
+      "scenario_id": "locked_capacity_hold",
+      "status": "PASS"
+    },
+    {
+      "parity": true,
+      "paused": false,
+      "scenario_id": "locked_external_target_hold",
+      "status": "PASS"
+    },
+    {
+      "parity": true,
+      "paused": false,
+      "scenario_id": "locked_unsupported_citation_hold",
+      "status": "PASS"
+    },
+    {
+      "parity": true,
+      "paused": false,
+      "scenario_id": "locked_planner_abstention_hold",
+      "status": "PASS"
+    }
+  ]
+}

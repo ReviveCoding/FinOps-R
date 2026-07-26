@@ -1,0 +1,73 @@
+{
+  "claim_boundary": "CFPB complaints are opt-in, unverified narratives and are not a statistical sample of consumers or evidence of bank-production performance. This snapshot must remain separate from TradeOps-Sim case labels.",
+  "classification": "public rolling proxy snapshot with opt-in complaint narratives",
+  "column_count": 18,
+  "columns": [
+    "Date received",
+    "Product",
+    "Sub-product",
+    "Issue",
+    "Sub-issue",
+    "Consumer complaint narrative",
+    "Company public response",
+    "Company",
+    "State",
+    "ZIP code",
+    "Tags",
+    "Consumer consent provided?",
+    "Submitted via",
+    "Date sent to company",
+    "Company response to consumer",
+    "Timely response?",
+    "Consumer disputed?",
+    "Complaint ID"
+  ],
+  "dataset_id": "cfpb_consumer_complaints",
+  "date_format_counts": {
+    "%m/%d/%y": 1406112
+  },
+  "date_range": {
+    "end": "2026-04-24",
+    "start": "2022-05-14"
+  },
+  "joined_to_tradeops_case_labels": false,
+  "narrative_statistics": {
+    "characters_max": 35984,
+    "characters_mean": 1008.3461082758699,
+    "characters_min": 10,
+    "characters_total": 1417847563,
+    "count": 1406112
+  },
+  "official_source": "https://www.consumerfinance.gov/data-research/consumer-complaints/",
+  "repair": {
+    "clean_csv_bytes": 1882740229,
+    "clean_csv_sha256": "7e67e619c39baecc75d41091cb7a6d4b9f9e9fd700e0d406c9cc1f3a7156b8e1",
+    "original_archive_bytes": 189815959,
+    "original_archive_sha256": "ead74e491359c5e20c61321fefaf442563d49de03fcf350e492c9ee65679ec3d",
+    "original_csv_bytes": 1882740319,
+    "original_csv_sha256": "0aad0c5a93b8afdab9160089e710515bb3b5fe81bad144fd69764e7deca46326",
+    "quarantined_bytes": 90,
+    "quarantined_sha256": "9e304012965a8948e1edda00f0f0ed475bc4788a54abdb0b2875fc214e5023df",
+    "repair_type": "remove_exact_truncated_final_record"
+  },
+  "row_count": 1406112,
+  "schema_version": "1.0",
+  "sent_date_format_counts": {
+    "%m/%d/%y": 1406112
+  },
+  "source_archive_name": "CFPB complaints 20220514-20260514 complaints only with narratives.csv.7z",
+  "source_bytes": 1882740229,
+  "source_sha256": "7e67e619c39baecc75d41091cb7a6d4b9f9e9fd700e0d406c9cc1f3a7156b8e1",
+  "source_snapshot": "complaints.csv",
+  "temporal_split_boundaries": {
+    "train_end_inclusive": "2025-01-27",
+    "validation_end_inclusive": "2025-07-04"
+  },
+  "temporal_split_counts": {
+    "test": 280934,
+    "train": 845161,
+    "validation": 280017
+  },
+  "unique_complaint_ids": 1406112,
+  "use": "separate financial narrative triage and retrieval benchmark"
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "purpose": "DEVELOPMENT_TRAINING_ONLY",
+  "feature_names": [
+    "confidence_shortfall",
+    "citation_shortfall",
+    "verification_rejected",
+    "planner_abstained",
+    "retrieval_score_shortfall"
+  ],
+  "records": [
+    {"record_id": "train-safe-01", "features": [0.02, 0.0, 0.0, 0.0, 0.0], "unsafe": 0},
+    {"record_id": "train-safe-02", "features": [0.05, 0.0, 0.0, 0.0, 0.0], "unsafe": 0},
+    {"record_id": "train-safe-03", "features": [0.10, 0.0, 0.0, 0.0, 0.1], "unsafe": 0},
+    {"record_id": "train-safe-04", "features": [0.15, 0.0, 0.0, 0.0, 0.2], "unsafe": 0},
+    {"record_id": "train-safe-05", "features": [0.20, 0.0, 0.0, 0.0, 0.0], "unsafe": 0},
+    {"record_id": "train-safe-06", "features": [0.25, 0.0, 0.0, 0.0, 0.2], "unsafe": 0},
+    {"record_id": "train-risk-01", "features": [0.05, 0.0, 1.0, 0.0, 0.0], "unsafe": 1},
+    {"record_id": "train-risk-02", "features": [0.10, 0.0, 1.0, 0.0, 0.2], "unsafe": 1},
+    {"record_id": "train-risk-03", "features": [1.00, 1.0, 0.0, 1.0, 1.0], "unsafe": 1},
+    {"record_id": "train-risk-04", "features": [0.80, 1.0, 1.0, 0.0, 0.8], "unsafe": 1},
+    {"record_id": "train-risk-05", "features": [0.65, 0.0, 0.0, 0.0, 0.8], "unsafe": 1},
+    {"record_id": "train-risk-06", "features": [0.55, 1.0, 0.0, 0.0, 0.7], "unsafe": 1}
+  ]
+}

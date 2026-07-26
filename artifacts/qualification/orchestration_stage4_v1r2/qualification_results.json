@@ -1,0 +1,1066 @@
+{
+  "results": [
+    {
+      "effect_count": 1,
+      "effect_count_valid": true,
+      "expectation_match": true,
+      "final_route": "SIMULATE",
+      "initial_route": "SIMULATE",
+      "reference_parity": true,
+      "release": {
+        "checkpoint_count": 2,
+        "last_checkpoint_sha256": "ec87fb98722a772f7d1170aef27d1a08d4836f89ac49d00bf0c2a41c885f2214",
+        "release_sha256": "9478488968255728eb948b38a9a5514ead6dfd3083556c0c5d2020febd6f6d8a",
+        "schema_version": "1.0",
+        "state_sha256": "aae79ef7db6f36f3ac6bd06267f00eec218cbd2c287b2c42f1a6dbb6883f173b",
+        "status": "RELEASED",
+        "thread_id": "thread-0"
+      },
+      "released_trace_immutable": true,
+      "scenario_id": "locked_allocation_simulate",
+      "state": {
+        "direct_state": {
+          "case_id": "STAGE4-locked_allocation_simulate",
+          "idempotency_key": "762641e16b6e818503db038a24723639261763ee5c2991fcd4ea1706f0070731",
+          "policy": {
+            "external_execution": false,
+            "reason_code": "LOW_RISK_SIMULATION",
+            "route": "SIMULATE",
+            "schema_version": "1.0",
+            "status": "PASS",
+            "target": "TRADEOPS_SIM",
+            "violation_rule_ids": []
+          },
+          "receipt": {
+            "action_code": "REQUEST_ALLOCATION",
+            "case_id": "STAGE4-locked_allocation_simulate",
+            "external_execution": false,
+            "idempotency_key": "762641e16b6e818503db038a24723639261763ee5c2991fcd4ea1706f0070731",
+            "schema_version": "1.0",
+            "status": "SIMULATED",
+            "target": "TRADEOPS_SIM"
+          },
+          "review_request": null,
+          "review_resolution": null,
+          "route": "SIMULATE",
+          "schema_version": "1.0",
+          "status": "COMPLETED",
+          "trace": [
+            {
+              "input_sha256": "fa91e15a47261aa6a4a351794c4f6acbdf642eb58edb8094ed5f230f2b83d84c",
+              "node": "INGEST",
+              "outcome": "BOUND",
+              "output_sha256": "13785f828ecaa5b0f78383224431850fdd423ef088bd9a516c106d40ba248983",
+              "sequence": 1
+            },
+            {
+              "input_sha256": "7e5213ef722a52d1c87b6c0a15ab9afd3a622be59b1f80fdc99625721fa080a4",
+              "node": "VERIFY",
+              "outcome": "SUPPORTED",
+              "output_sha256": "e4afc491c78a1769f3edb64529884e8d71ceb1abd12e3625b86db126aa9cd638",
+              "sequence": 2
+            },
+            {
+              "input_sha256": "cdb0ffa559289f71d7e5a900c794629c7395fa8852f4a214b56b2f4be664f496",
+              "node": "POLICY",
+              "outcome": "PASS",
+              "output_sha256": "bf167ad0bdf30aab0d06b784b314fffad9b7b29c99889fa283701a388f154452",
+              "sequence": 3
+            },
+            {
+              "input_sha256": "bf167ad0bdf30aab0d06b784b314fffad9b7b29c99889fa283701a388f154452",
+              "node": "ROUTE",
+              "outcome": "SIMULATE",
+              "output_sha256": "d7c2b69332cf9270544f5a6a7a7aff58e8bff6d52f20074fe6088b54870473cd",
+              "sequence": 4
+            },
+            {
+              "input_sha256": "7e5213ef722a52d1c87b6c0a15ab9afd3a622be59b1f80fdc99625721fa080a4",
+              "node": "SIMULATE",
+              "outcome": "SIMULATED",
+              "output_sha256": "aa9eef136b15e4efde53cf065d3cde09f37958a11c673347bb926b932390e967",
+              "sequence": 5
+            },
+            {
+              "input_sha256": "aa9eef136b15e4efde53cf065d3cde09f37958a11c673347bb926b932390e967",
+              "node": "COMPLETE",
+              "outcome": "COMPLETED",
+              "output_sha256": "f6497865a366334fa5f5c7495ad6e587057da9093acbc79c144a3f57ed528068",
+              "sequence": 6
+            }
+          ],
+          "trace_complete": true,
+          "verification": {
+            "learned_verifier_used": false,
+            "schema_version": "1.0",
+            "status": "SUPPORTED",
+            "verified_evidence_ids": [
+              "sec.rule15c6-2.aca.trade_date"
+            ],
+            "verifier_id": "finops_deterministic_policy_verifier_v1",
+            "violation_rule_ids": []
+          }
+        },
+        "effective_route": "SIMULATE",
+        "learned_verifier": {
+          "artifact_sha256": "228362fef86903b160faf31b7056af6666717d7a9003aff833ca42ff58ba7968",
+          "feature_values": [
+            0.050000000000000044,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "flagged": false,
+          "mode": "VETO_ONLY",
+          "risk_probability": 0.16173166715357118,
+          "schema_version": "1.0",
+          "threshold": 0.658808232744,
+          "verifier_id": "finops_learned_risk_verifier_stage4_v1"
+        },
+        "schema_version": "1.0",
+        "simulation_effect_recorded": true
+      }
+    },
+    {
+      "effect_count": 1,
+      "effect_count_valid": true,
+      "expectation_match": true,
+      "final_route": "SIMULATE",
+      "initial_route": "SIMULATE",
+      "reference_parity": true,
+      "release": {
+        "checkpoint_count": 2,
+        "last_checkpoint_sha256": "f9a1395300f9350e2f2a518442138115895547fd45787040af325fa4aa8f1858",
+        "release_sha256": "7fffda48cb197e79fac29b93db6e3b18a35905b8ffe0803f4c06cd25a060517c",
+        "schema_version": "1.0",
+        "state_sha256": "2fd988c5d6501f7aae055833b4cf073442485605966e2123c5b2aa472cac82ba",
+        "status": "RELEASED",
+        "thread_id": "thread-1"
+      },
+      "released_trace_immutable": true,
+      "scenario_id": "locked_affirmation_simulate",
+      "state": {
+        "direct_state": {
+          "case_id": "STAGE4-locked_affirmation_simulate",
+          "idempotency_key": "d1dee35cecf09c7bfaa91c3d53f0ecfe1311eaf3466b2ede8a3f17c06d48e79c",
+          "policy": {
+            "external_execution": false,
+            "reason_code": "LOW_RISK_SIMULATION",
+            "route": "SIMULATE",
+            "schema_version": "1.0",
+            "status": "PASS",
+            "target": "TRADEOPS_SIM",
+            "violation_rule_ids": []
+          },
+          "receipt": {
+            "action_code": "REQUEST_AFFIRMATION",
+            "case_id": "STAGE4-locked_affirmation_simulate",
+            "external_execution": false,
+            "idempotency_key": "d1dee35cecf09c7bfaa91c3d53f0ecfe1311eaf3466b2ede8a3f17c06d48e79c",
+            "schema_version": "1.0",
+            "status": "SIMULATED",
+            "target": "TRADEOPS_SIM"
+          },
+          "review_request": null,
+          "review_resolution": null,
+          "route": "SIMULATE",
+          "schema_version": "1.0",
+          "status": "COMPLETED",
+          "trace": [
+            {
+              "input_sha256": "e6d2fad4bd6a603c9e71f8801d15846eb9520d298d71687b8485fe3344b51760",
+              "node": "INGEST",
+              "outcome": "BOUND",
+              "output_sha256": "c5ca1d2384ff8ddd5f8031bf9e047e2c2132a23c6c95f0456ef37a73262d1d18",
+              "sequence": 1
+            },
+            {
+              "input_sha256": "b5d3002cd2ead1eb4be5c10224d3bff08c9dd79e918a8a498b4c80a6867d6d97",
+              "node": "VERIFY",
+              "outcome": "SUPPORTED",
+              "output_sha256": "e4afc491c78a1769f3edb64529884e8d71ceb1abd12e3625b86db126aa9cd638",
+              "sequence": 2
+            },
+            {
+              "input_sha256": "cdb0ffa559289f71d7e5a900c794629c7395fa8852f4a214b56b2f4be664f496",
+              "node": "POLICY",
+              "outcome": "PASS",
+              "output_sha256": "bf167ad0bdf30aab0d06b784b314fffad9b7b29c99889fa283701a388f154452",
+              "sequence": 3
+            },
+            {
+              "input_sha256": "bf167ad0bdf30aab0d06b784b314fffad9b7b29c99889fa283701a388f154452",
+              "node": "ROUTE",
+              "outcome": "SIMULATE",
+              "output_sha256": "d7c2b69332cf9270544f5a6a7a7aff58e8bff6d52f20074fe6088b54870473cd",
+              "sequence": 4
+            },
+            {
+              "input_sha256": "b5d3002cd2ead1eb4be5c10224d3bff08c9dd79e918a8a498b4c80a6867d6d97",
+              "node": "SIMULATE",
+              "outcome": "SIMULATED",
+              "output_sha256": "9bea0e7bcc207c608d7b39ed9b157ca8c80c083964cbb1d4a0ad6c3d18cba958",
+              "sequence": 5
+            },
+            {
+              "input_sha256": "9bea0e7bcc207c608d7b39ed9b157ca8c80c083964cbb1d4a0ad6c3d18cba958",
+              "node": "COMPLETE",
+              "outcome": "COMPLETED",
+              "output_sha256": "f6497865a366334fa5f5c7495ad6e587057da9093acbc79c144a3f57ed528068",
+              "sequence": 6
+            }
+          ],
+          "trace_complete": true,
+          "verification": {
+            "learned_verifier_used": false,
+            "schema_version": "1.0",
+            "status": "SUPPORTED",
+            "verified_evidence_ids": [
+              "sec.rule15c6-2.aca.trade_date"
+            ],
+            "verifier_id": "finops_deterministic_policy_verifier_v1",
+            "violation_rule_ids": []
+          }
+        },
+        "effective_route": "SIMULATE",
+        "learned_verifier": {
+          "artifact_sha256": "228362fef86903b160faf31b7056af6666717d7a9003aff833ca42ff58ba7968",
+          "feature_values": [
+            0.050000000000000044,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "flagged": false,
+          "mode": "VETO_ONLY",
+          "risk_probability": 0.16173166715357118,
+          "schema_version": "1.0",
+          "threshold": 0.658808232744,
+          "verifier_id": "finops_learned_risk_verifier_stage4_v1"
+        },
+        "schema_version": "1.0",
+        "simulation_effect_recorded": true
+      }
+    },
+    {
+      "effect_count": 1,
+      "effect_count_valid": true,
+      "expectation_match": true,
+      "final_route": "SIMULATE",
+      "initial_route": "SIMULATE",
+      "reference_parity": true,
+      "release": {
+        "checkpoint_count": 2,
+        "last_checkpoint_sha256": "8d42fdaeb5757e9385d60c9940874e5a76dc88a5143a7e642c4ce25e88179511",
+        "release_sha256": "9d9222eba8718c9a71765a8e0390edfe3f3beaac045a6337087acc86c7e3feae",
+        "schema_version": "1.0",
+        "state_sha256": "ab102e7977873121586cd83623cf2d9e3bbe20547a5b3cddca0c0810f972fcb3",
+        "status": "RELEASED",
+        "thread_id": "thread-2"
+      },
+      "released_trace_immutable": true,
+      "scenario_id": "locked_ssi_simulate",
+      "state": {
+        "direct_state": {
+          "case_id": "STAGE4-locked_ssi_simulate",
+          "idempotency_key": "049f6e2ccae977367133e92912f72adda0072c6d8c12b3e6c9632014d64127b1",
+          "policy": {
+            "external_execution": false,
+            "reason_code": "LOW_RISK_SIMULATION",
+            "route": "SIMULATE",
+            "schema_version": "1.0",
+            "status": "PASS",
+            "target": "TRADEOPS_SIM",
+            "violation_rule_ids": []
+          },
+          "receipt": {
+            "action_code": "REQUEST_SSI_REFRESH",
+            "case_id": "STAGE4-locked_ssi_simulate",
+            "external_execution": false,
+            "idempotency_key": "049f6e2ccae977367133e92912f72adda0072c6d8c12b3e6c9632014d64127b1",
+            "schema_version": "1.0",
+            "status": "SIMULATED",
+            "target": "TRADEOPS_SIM"
+          },
+          "review_request": null,
+          "review_resolution": null,
+          "route": "SIMULATE",
+          "schema_version": "1.0",
+          "status": "COMPLETED",
+          "trace": [
+            {
+              "input_sha256": "a2007ffb59c1b4c941dd3537e0d2645904ec4fe5c96ef0ff8bf4068022e9bb82",
+              "node": "INGEST",
+              "outcome": "BOUND",
+              "output_sha256": "7fbe1fc4ddc44bb915d0ec84791591aca7dfdcdde46e1d93c291ba6f3d1648a7",
+              "sequence": 1
+            },
+            {
+              "input_sha256": "184e5b1c0f8a661e1173659da4669578782ff2be3207a9619316dc6a4a10f20a",
+              "node": "VERIFY",
+              "outcome": "SUPPORTED",
+              "output_sha256": "6a0010c3de5343428730598eeec11a457b68bf4159208900f81bfd8c97b8d2fc",
+              "sequence": 2
+            },
+            {
+              "input_sha256": "323eb1287550442d02035f47add9d29b9139e419196e2e727cce9e00acbb1d0c",
+              "node": "POLICY",
+              "outcome": "PASS",
+              "output_sha256": "bf167ad0bdf30aab0d06b784b314fffad9b7b29c99889fa283701a388f154452",
+              "sequence": 3
+            },
+            {
+              "input_sha256": "bf167ad0bdf30aab0d06b784b314fffad9b7b29c99889fa283701a388f154452",
+              "node": "ROUTE",
+              "outcome": "SIMULATE",
+              "output_sha256": "d7c2b69332cf9270544f5a6a7a7aff58e8bff6d52f20074fe6088b54870473cd",
+              "sequence": 4
+            },
+            {
+              "input_sha256": "184e5b1c0f8a661e1173659da4669578782ff2be3207a9619316dc6a4a10f20a",
+              "node": "SIMULATE",
+              "outcome": "SIMULATED",
+              "output_sha256": "bb1ffa231fb3160e712a3cf0b70b62f6ce335ca10bd8a41a7262123ee8813cb1",
+              "sequence": 5
+            },
+            {
+              "input_sha256": "bb1ffa231fb3160e712a3cf0b70b62f6ce335ca10bd8a41a7262123ee8813cb1",
+              "node": "COMPLETE",
+              "outcome": "COMPLETED",
+              "output_sha256": "f6497865a366334fa5f5c7495ad6e587057da9093acbc79c144a3f57ed528068",
+              "sequence": 6
+            }
+          ],
+          "trace_complete": true,
+          "verification": {
+            "learned_verifier_used": false,
+            "schema_version": "1.0",
+            "status": "SUPPORTED",
+            "verified_evidence_ids": [
+              "dtcc.ssi.reference_data.tplus1"
+            ],
+            "verifier_id": "finops_deterministic_policy_verifier_v1",
+            "violation_rule_ids": []
+          }
+        },
+        "effective_route": "SIMULATE",
+        "learned_verifier": {
+          "artifact_sha256": "228362fef86903b160faf31b7056af6666717d7a9003aff833ca42ff58ba7968",
+          "feature_values": [
+            0.050000000000000044,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "flagged": false,
+          "mode": "VETO_ONLY",
+          "risk_probability": 0.16173166715357118,
+          "schema_version": "1.0",
+          "threshold": 0.658808232744,
+          "verifier_id": "finops_learned_risk_verifier_stage4_v1"
+        },
+        "schema_version": "1.0",
+        "simulation_effect_recorded": true
+      }
+    },
+    {
+      "effect_count": 1,
+      "effect_count_valid": true,
+      "expectation_match": true,
+      "final_route": "SIMULATE",
+      "initial_route": "REVIEW",
+      "reference_parity": true,
+      "release": {
+        "checkpoint_count": 4,
+        "last_checkpoint_sha256": "bb334099e49fcb0c1c4dc69fef317918c85a53ff7e6603f011fb7918c17f88b1",
+        "release_sha256": "195365c3bca6da0f6a3e985bfab036be0ea7fb146e444459b2ba0bb881363c19",
+        "schema_version": "1.0",
+        "state_sha256": "a1a738886e2dec05090f8048e48f8b3f3d8946ece4be898f051c97a3a27da57a",
+        "status": "RELEASED",
+        "thread_id": "thread-3"
+      },
+      "released_trace_immutable": true,
+      "scenario_id": "locked_correction_approve",
+      "state": {
+        "direct_state": {
+          "case_id": "STAGE4-locked_correction_approve",
+          "idempotency_key": "1dfb2790aa2b04ca8beb88049a015aeece97a9bb70ec312ac365dae6d54744c9",
+          "policy": {
+            "external_execution": false,
+            "reason_code": "MANDATORY_HUMAN_REVIEW",
+            "route": "REVIEW",
+            "schema_version": "1.0",
+            "status": "PASS",
+            "target": "TRADEOPS_SIM",
+            "violation_rule_ids": []
+          },
+          "receipt": {
+            "action_code": "CORRECT_ECONOMIC_FIELD",
+            "case_id": "STAGE4-locked_correction_approve",
+            "external_execution": false,
+            "idempotency_key": "1dfb2790aa2b04ca8beb88049a015aeece97a9bb70ec312ac365dae6d54744c9",
+            "schema_version": "1.0",
+            "status": "SIMULATED",
+            "target": "TRADEOPS_SIM"
+          },
+          "review_request": {
+            "action_code": "CORRECT_ECONOMIC_FIELD",
+            "case_id": "STAGE4-locked_correction_approve",
+            "review_token": "90d3caeff829551eae8c5c9bec61eb96c2393f71da556384cec0bec145f34bd6",
+            "schema_version": "1.0",
+            "status": "PENDING"
+          },
+          "review_resolution": {
+            "decision": "APPROVE",
+            "reviewer_id": "stage4-locked-reviewer"
+          },
+          "route": "SIMULATE",
+          "schema_version": "1.0",
+          "status": "COMPLETED",
+          "trace": [
+            {
+              "input_sha256": "571f2bb95c8867a5940a838785fd069b2110aa5626b9e240cbd092188ef2132e",
+              "node": "INGEST",
+              "outcome": "BOUND",
+              "output_sha256": "b56feffd82a503df70eac4079d6d5f320c73c3d0b670f8f1256a690794245d0b",
+              "sequence": 1
+            },
+            {
+              "input_sha256": "bfc6b214a6c656105ca6e1365bc9c026132df5709aab715fcf43d8eaf929cbca",
+              "node": "VERIFY",
+              "outcome": "SUPPORTED",
+              "output_sha256": "aeb85a0ab0dc7ebcccfd0f44c2bf123a999034ee4729b5a44dd5a2fba1e4f4ce",
+              "sequence": 2
+            },
+            {
+              "input_sha256": "2c7fc2506c2c2f1ad37e8f76d83f310acc8305687e5fa4245cf013fdf9f9deab",
+              "node": "POLICY",
+              "outcome": "PASS",
+              "output_sha256": "e7b3bbeb728a79214a2aff01be046453563c2787d94d7e39d625c421bfdd82a4",
+              "sequence": 3
+            },
+            {
+              "input_sha256": "e7b3bbeb728a79214a2aff01be046453563c2787d94d7e39d625c421bfdd82a4",
+              "node": "ROUTE",
+              "outcome": "REVIEW",
+              "output_sha256": "d42a8c469fb7aa6caf0ff725f890e44a5c2f4712224c61f73fbcf7163990cf15",
+              "sequence": 4
+            },
+            {
+              "input_sha256": "13b10f4614def37d03c5733c5d276901eaa347b490ce7ece994e8abf5bdb9aea",
+              "node": "REVIEW",
+              "outcome": "APPROVE",
+              "output_sha256": "5b9cb5ce0ed3e7d3807cb9d118e7e035248c85f5de678911c62e8ffc5aeff8c1",
+              "sequence": 5
+            },
+            {
+              "input_sha256": "5b9cb5ce0ed3e7d3807cb9d118e7e035248c85f5de678911c62e8ffc5aeff8c1",
+              "node": "SIMULATE",
+              "outcome": "SIMULATED_AFTER_REVIEW",
+              "output_sha256": "4a1b3bfb3b6121373126f4b6b9d4889d9cdfcaa5f1fef008fb0bbcbc041cf9a4",
+              "sequence": 6
+            },
+            {
+              "input_sha256": "4a1b3bfb3b6121373126f4b6b9d4889d9cdfcaa5f1fef008fb0bbcbc041cf9a4",
+              "node": "COMPLETE",
+              "outcome": "COMPLETED",
+              "output_sha256": "986086a9e59eea2c25da399cc3cdb327dba41d7404b951b524e1bbf975a4a7c7",
+              "sequence": 7
+            }
+          ],
+          "trace_complete": true,
+          "verification": {
+            "learned_verifier_used": false,
+            "schema_version": "1.0",
+            "status": "SUPPORTED",
+            "verified_evidence_ids": [
+              "sec.rule15c6-2.discrepancy_delays"
+            ],
+            "verifier_id": "finops_deterministic_policy_verifier_v1",
+            "violation_rule_ids": []
+          }
+        },
+        "effective_route": "SIMULATE",
+        "learned_verifier": {
+          "artifact_sha256": "228362fef86903b160faf31b7056af6666717d7a9003aff833ca42ff58ba7968",
+          "feature_values": [
+            0.050000000000000044,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "flagged": false,
+          "mode": "VETO_ONLY",
+          "risk_probability": 0.16173166715357118,
+          "schema_version": "1.0",
+          "threshold": 0.658808232744,
+          "verifier_id": "finops_learned_risk_verifier_stage4_v1"
+        },
+        "schema_version": "1.0",
+        "simulation_effect_recorded": true
+      }
+    },
+    {
+      "effect_count": 0,
+      "effect_count_valid": true,
+      "expectation_match": true,
+      "final_route": "HOLD",
+      "initial_route": "REVIEW",
+      "reference_parity": true,
+      "release": {
+        "checkpoint_count": 4,
+        "last_checkpoint_sha256": "9ca9e8cbece38e453a6d063816b8a46919a53d16451f49f5d8d3500cc9a908f9",
+        "release_sha256": "eb504f56cb9d1a4ac8bd23f1174a145a4fb51fc1981b65e8ecac3d6b562b38e6",
+        "schema_version": "1.0",
+        "state_sha256": "f634ce35f1d15c20eb214a859361c9ab1a8b4d4ec5ed3feee0922949dfd0cac6",
+        "status": "RELEASED",
+        "thread_id": "thread-4"
+      },
+      "released_trace_immutable": true,
+      "scenario_id": "locked_correction_reject",
+      "state": {
+        "direct_state": {
+          "case_id": "STAGE4-locked_correction_reject",
+          "idempotency_key": "495b378aebab55d6fc008fa2ea521942be92ceb9bde5c1f839a5e0c832346b18",
+          "policy": {
+            "external_execution": false,
+            "reason_code": "MANDATORY_HUMAN_REVIEW",
+            "route": "REVIEW",
+            "schema_version": "1.0",
+            "status": "PASS",
+            "target": "TRADEOPS_SIM",
+            "violation_rule_ids": []
+          },
+          "receipt": null,
+          "review_request": {
+            "action_code": "CORRECT_COUNTERPARTY",
+            "case_id": "STAGE4-locked_correction_reject",
+            "review_token": "f767bff076c1922f427e28895ac36a393c490f9f8bfb0fc3456e12e8e9c047eb",
+            "schema_version": "1.0",
+            "status": "PENDING"
+          },
+          "review_resolution": {
+            "decision": "REJECT",
+            "reviewer_id": "stage4-locked-reviewer"
+          },
+          "route": "HOLD",
+          "schema_version": "1.0",
+          "status": "COMPLETED",
+          "trace": [
+            {
+              "input_sha256": "ef9fcf6242b8f8c6095f8a8c982b67e7f7e9b828e75e31662285250829e6db4b",
+              "node": "INGEST",
+              "outcome": "BOUND",
+              "output_sha256": "338bdaaedceedb16633055b9c473d236903c5ff6da337af5378c0c02067e07ae",
+              "sequence": 1
+            },
+            {
+              "input_sha256": "30fb02a95b03d9656a2944a3289b3914610e7f79af4ab6a50cdf642e439cbaaf",
+              "node": "VERIFY",
+              "outcome": "SUPPORTED",
+              "output_sha256": "aeb85a0ab0dc7ebcccfd0f44c2bf123a999034ee4729b5a44dd5a2fba1e4f4ce",
+              "sequence": 2
+            },
+            {
+              "input_sha256": "2c7fc2506c2c2f1ad37e8f76d83f310acc8305687e5fa4245cf013fdf9f9deab",
+              "node": "POLICY",
+              "outcome": "PASS",
+              "output_sha256": "e7b3bbeb728a79214a2aff01be046453563c2787d94d7e39d625c421bfdd82a4",
+              "sequence": 3
+            },
+            {
+              "input_sha256": "e7b3bbeb728a79214a2aff01be046453563c2787d94d7e39d625c421bfdd82a4",
+              "node": "ROUTE",
+              "outcome": "REVIEW",
+              "output_sha256": "d42a8c469fb7aa6caf0ff725f890e44a5c2f4712224c61f73fbcf7163990cf15",
+              "sequence": 4
+            },
+            {
+              "input_sha256": "789ea5139f46ce83579518b6f4f4fd1661f68464f7f3ed5fefbcc836271ba54f",
+              "node": "REVIEW",
+              "outcome": "REJECT",
+              "output_sha256": "39f7daf612e71b23ed271538f01e94234f54b7e29fb5fcfd5004592d407019c8",
+              "sequence": 5
+            },
+            {
+              "input_sha256": "39f7daf612e71b23ed271538f01e94234f54b7e29fb5fcfd5004592d407019c8",
+              "node": "COMPLETE",
+              "outcome": "REVIEW_REJECTED",
+              "output_sha256": "aa39b324761c107c0f980153781ad01c3eaa17234f8195fdfa9ef59a22ab1cc6",
+              "sequence": 6
+            }
+          ],
+          "trace_complete": true,
+          "verification": {
+            "learned_verifier_used": false,
+            "schema_version": "1.0",
+            "status": "SUPPORTED",
+            "verified_evidence_ids": [
+              "sec.rule15c6-2.discrepancy_delays"
+            ],
+            "verifier_id": "finops_deterministic_policy_verifier_v1",
+            "violation_rule_ids": []
+          }
+        },
+        "effective_route": "HOLD",
+        "learned_verifier": {
+          "artifact_sha256": "228362fef86903b160faf31b7056af6666717d7a9003aff833ca42ff58ba7968",
+          "feature_values": [
+            0.050000000000000044,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "flagged": false,
+          "mode": "VETO_ONLY",
+          "risk_probability": 0.16173166715357118,
+          "schema_version": "1.0",
+          "threshold": 0.658808232744,
+          "verifier_id": "finops_learned_risk_verifier_stage4_v1"
+        },
+        "schema_version": "1.0",
+        "simulation_effect_recorded": false
+      }
+    },
+    {
+      "effect_count": 0,
+      "effect_count_valid": true,
+      "expectation_match": true,
+      "final_route": "HOLD",
+      "initial_route": "HOLD",
+      "reference_parity": true,
+      "release": {
+        "checkpoint_count": 2,
+        "last_checkpoint_sha256": "b9939f03ca8c180c13c3d9d57770400d5561479a697fe607a553b390b8133820",
+        "release_sha256": "cd0d88be3ab1af79a00f1024f81bbf6347a4f60b3e4f6d5a0e13988b4a86ca59",
+        "schema_version": "1.0",
+        "state_sha256": "e5abd21b055b5297d39672e94f3e80e0deac4e722be76d6d72c1f9cbe80bfbe5",
+        "status": "RELEASED",
+        "thread_id": "thread-5"
+      },
+      "released_trace_immutable": true,
+      "scenario_id": "locked_capacity_hold",
+      "state": {
+        "direct_state": {
+          "case_id": "STAGE4-locked_capacity_hold",
+          "idempotency_key": "2a3fbed1b6a3e6e6b0e49e9028983d6bc86b6b5b2ff08de57688ffc7f22b8fc2",
+          "policy": {
+            "external_execution": false,
+            "reason_code": "REVIEW_CAPACITY_UNAVAILABLE",
+            "route": "HOLD",
+            "schema_version": "1.0",
+            "status": "HOLD",
+            "target": "TRADEOPS_SIM",
+            "violation_rule_ids": [
+              "POLICY_REVIEW_CAPACITY_UNAVAILABLE"
+            ]
+          },
+          "receipt": null,
+          "review_request": null,
+          "review_resolution": null,
+          "route": "HOLD",
+          "schema_version": "1.0",
+          "status": "COMPLETED",
+          "trace": [
+            {
+              "input_sha256": "289dfe8ffe23dfeb24623683fbf9ab456ad31e2ec3070d3adb8797f1b6961159",
+              "node": "INGEST",
+              "outcome": "BOUND",
+              "output_sha256": "f32aec224a31b37dfbc7112baf0c06465ca7db1a2541c7bdc5c2baf462e0c3b6",
+              "sequence": 1
+            },
+            {
+              "input_sha256": "0f6455f0a4a1c2c6da1d5f2fe029dd625b815eff153613a724fb4c89777f58c2",
+              "node": "VERIFY",
+              "outcome": "SUPPORTED",
+              "output_sha256": "aeb85a0ab0dc7ebcccfd0f44c2bf123a999034ee4729b5a44dd5a2fba1e4f4ce",
+              "sequence": 2
+            },
+            {
+              "input_sha256": "0a94ace59a20b8df67f0d6c65e971d6fc0d2ec7265acd8e5c6588f80bf0bc071",
+              "node": "POLICY",
+              "outcome": "HOLD",
+              "output_sha256": "1156816c2f0654f6a09321de29e1e72b64f5b2a0444448148b74e37960ed14f2",
+              "sequence": 3
+            },
+            {
+              "input_sha256": "1156816c2f0654f6a09321de29e1e72b64f5b2a0444448148b74e37960ed14f2",
+              "node": "ROUTE",
+              "outcome": "HOLD",
+              "output_sha256": "25c59efb1726961521a6f3b87d49dfa53d082f6db8931431624260b5a0d2dc65",
+              "sequence": 4
+            },
+            {
+              "input_sha256": "1156816c2f0654f6a09321de29e1e72b64f5b2a0444448148b74e37960ed14f2",
+              "node": "COMPLETE",
+              "outcome": "HELD",
+              "output_sha256": "f6497865a366334fa5f5c7495ad6e587057da9093acbc79c144a3f57ed528068",
+              "sequence": 5
+            }
+          ],
+          "trace_complete": true,
+          "verification": {
+            "learned_verifier_used": false,
+            "schema_version": "1.0",
+            "status": "SUPPORTED",
+            "verified_evidence_ids": [
+              "sec.rule15c6-2.discrepancy_delays"
+            ],
+            "verifier_id": "finops_deterministic_policy_verifier_v1",
+            "violation_rule_ids": []
+          }
+        },
+        "effective_route": "HOLD",
+        "learned_verifier": {
+          "artifact_sha256": "228362fef86903b160faf31b7056af6666717d7a9003aff833ca42ff58ba7968",
+          "feature_values": [
+            0.050000000000000044,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "flagged": false,
+          "mode": "VETO_ONLY",
+          "risk_probability": 0.16173166715357118,
+          "schema_version": "1.0",
+          "threshold": 0.658808232744,
+          "verifier_id": "finops_learned_risk_verifier_stage4_v1"
+        },
+        "schema_version": "1.0",
+        "simulation_effect_recorded": false
+      }
+    },
+    {
+      "effect_count": 0,
+      "effect_count_valid": true,
+      "expectation_match": true,
+      "final_route": "HOLD",
+      "initial_route": "HOLD",
+      "reference_parity": true,
+      "release": {
+        "checkpoint_count": 2,
+        "last_checkpoint_sha256": "e368d6ec57ec6371fc3cef2c5a3db59b0fc7887ca4d4dc9606daee2bcb8033ea",
+        "release_sha256": "2e90e6aa21b380ff3124eb39d9ec7af7a99358ad3e261cada69552b414b58510",
+        "schema_version": "1.0",
+        "state_sha256": "f02dac1ebbdc3e0b3856c67ab3509232b4a7f3326b497946c5a1d44ff2b9bb25",
+        "status": "RELEASED",
+        "thread_id": "thread-6"
+      },
+      "released_trace_immutable": true,
+      "scenario_id": "locked_external_target_hold",
+      "state": {
+        "direct_state": {
+          "case_id": "STAGE4-locked_external_target_hold",
+          "idempotency_key": "4cb23a4fe05d1cd8088cbef58ff64c26110e17aa2ec35ece0b207e74d19b9854",
+          "policy": {
+            "external_execution": false,
+            "reason_code": "POLICY_GATE_FAILED",
+            "route": "HOLD",
+            "schema_version": "1.0",
+            "status": "HOLD",
+            "target": "TRADEOPS_SIM",
+            "violation_rule_ids": [
+              "POLICY_EXTERNAL_EXECUTION_PROHIBITED",
+              "POLICY_EXTERNAL_TARGET_PROHIBITED"
+            ]
+          },
+          "receipt": null,
+          "review_request": null,
+          "review_resolution": null,
+          "route": "HOLD",
+          "schema_version": "1.0",
+          "status": "COMPLETED",
+          "trace": [
+            {
+              "input_sha256": "7aaf7c50dc91b00288848a9ef2d227f072348ecb451138aad68c65c2075ada93",
+              "node": "INGEST",
+              "outcome": "BOUND",
+              "output_sha256": "26947ed8267c5253b3dc73aedc70591ec6f9229614cfdda18225f14a17ec958f",
+              "sequence": 1
+            },
+            {
+              "input_sha256": "8f133456aefe4f05b0089330437897c5b57c4d63c5fa3ca94362387e4daf444d",
+              "node": "VERIFY",
+              "outcome": "SUPPORTED",
+              "output_sha256": "e4afc491c78a1769f3edb64529884e8d71ceb1abd12e3625b86db126aa9cd638",
+              "sequence": 2
+            },
+            {
+              "input_sha256": "173139bddd7d8e8686211d74b0621fee2589ff88375f5bb8e24408353482aa13",
+              "node": "POLICY",
+              "outcome": "HOLD",
+              "output_sha256": "8e24af699cf5b141914182ef398523d3c58b1657e6aaa2f048ff27907c8cfb45",
+              "sequence": 3
+            },
+            {
+              "input_sha256": "8e24af699cf5b141914182ef398523d3c58b1657e6aaa2f048ff27907c8cfb45",
+              "node": "ROUTE",
+              "outcome": "HOLD",
+              "output_sha256": "25c59efb1726961521a6f3b87d49dfa53d082f6db8931431624260b5a0d2dc65",
+              "sequence": 4
+            },
+            {
+              "input_sha256": "8e24af699cf5b141914182ef398523d3c58b1657e6aaa2f048ff27907c8cfb45",
+              "node": "COMPLETE",
+              "outcome": "HELD",
+              "output_sha256": "f6497865a366334fa5f5c7495ad6e587057da9093acbc79c144a3f57ed528068",
+              "sequence": 5
+            }
+          ],
+          "trace_complete": true,
+          "verification": {
+            "learned_verifier_used": false,
+            "schema_version": "1.0",
+            "status": "SUPPORTED",
+            "verified_evidence_ids": [
+              "sec.rule15c6-2.aca.trade_date"
+            ],
+            "verifier_id": "finops_deterministic_policy_verifier_v1",
+            "violation_rule_ids": []
+          }
+        },
+        "effective_route": "HOLD",
+        "learned_verifier": {
+          "artifact_sha256": "228362fef86903b160faf31b7056af6666717d7a9003aff833ca42ff58ba7968",
+          "feature_values": [
+            0.050000000000000044,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "flagged": false,
+          "mode": "VETO_ONLY",
+          "risk_probability": 0.16173166715357118,
+          "schema_version": "1.0",
+          "threshold": 0.658808232744,
+          "verifier_id": "finops_learned_risk_verifier_stage4_v1"
+        },
+        "schema_version": "1.0",
+        "simulation_effect_recorded": false
+      }
+    },
+    {
+      "effect_count": 0,
+      "effect_count_valid": true,
+      "expectation_match": true,
+      "final_route": "HOLD",
+      "initial_route": "HOLD",
+      "reference_parity": true,
+      "release": {
+        "checkpoint_count": 2,
+        "last_checkpoint_sha256": "030627b9d83a6875cbb7977c61b0d5feb164d0ebacf16cde79b011d601210238",
+        "release_sha256": "7ff7c7ea1d33bc772c7a3d7ac5f91de4f43ff393c8012711968a4a276b954c57",
+        "schema_version": "1.0",
+        "state_sha256": "8307e8a48c8edb5036daeb1dd44e4345707844872cba24a163e3064eef1def96",
+        "status": "RELEASED",
+        "thread_id": "thread-7"
+      },
+      "released_trace_immutable": true,
+      "scenario_id": "locked_unsupported_citation_hold",
+      "state": {
+        "direct_state": {
+          "case_id": "STAGE4-locked_unsupported_citation_hold",
+          "idempotency_key": "8b347f5b0e5447e1b809c2a6378cfb11e886dfc027cb8d83aa743bf81d7ebdfe",
+          "policy": {
+            "external_execution": false,
+            "reason_code": "VERIFIER_REJECTED",
+            "route": "HOLD",
+            "schema_version": "1.0",
+            "status": "HOLD",
+            "target": "TRADEOPS_SIM",
+            "violation_rule_ids": [
+              "VERIFIER_CITATION_DOES_NOT_SUPPORT_ACTION",
+              "VERIFIER_INCOMPLETE_CITATION_SUPPORT"
+            ]
+          },
+          "receipt": null,
+          "review_request": null,
+          "review_resolution": null,
+          "route": "HOLD",
+          "schema_version": "1.0",
+          "status": "COMPLETED",
+          "trace": [
+            {
+              "input_sha256": "acc2cfadc026b8628b680fc798aa5b7da6996ffcad3c7ee30a4e6a7a19d7e8ed",
+              "node": "INGEST",
+              "outcome": "BOUND",
+              "output_sha256": "072511404c3bcddf6724fccf1fc428f9bebd9e43b387c6982a712bd073361c94",
+              "sequence": 1
+            },
+            {
+              "input_sha256": "ef5d8d7bfedc92f5033de3819f9b409be27f4219e7fea3e3098ccc0d43590853",
+              "node": "VERIFY",
+              "outcome": "REJECTED",
+              "output_sha256": "e1d1a6e7a22fa4208d8d0d35608ca1011a85938e08c9696aa13a4f96d3a88d9c",
+              "sequence": 2
+            },
+            {
+              "input_sha256": "2f65aad884b696b90ed6cf89f9dcfce4f95171140466c0863b902d69483d5072",
+              "node": "POLICY",
+              "outcome": "HOLD",
+              "output_sha256": "6e7ef3aca83a1b13dc53675e7628fead961de68e154bb3ec8ed7af58b7765b7e",
+              "sequence": 3
+            },
+            {
+              "input_sha256": "6e7ef3aca83a1b13dc53675e7628fead961de68e154bb3ec8ed7af58b7765b7e",
+              "node": "ROUTE",
+              "outcome": "HOLD",
+              "output_sha256": "25c59efb1726961521a6f3b87d49dfa53d082f6db8931431624260b5a0d2dc65",
+              "sequence": 4
+            },
+            {
+              "input_sha256": "6e7ef3aca83a1b13dc53675e7628fead961de68e154bb3ec8ed7af58b7765b7e",
+              "node": "COMPLETE",
+              "outcome": "HELD",
+              "output_sha256": "f6497865a366334fa5f5c7495ad6e587057da9093acbc79c144a3f57ed528068",
+              "sequence": 5
+            }
+          ],
+          "trace_complete": true,
+          "verification": {
+            "learned_verifier_used": false,
+            "schema_version": "1.0",
+            "status": "REJECTED",
+            "verified_evidence_ids": [],
+            "verifier_id": "finops_deterministic_policy_verifier_v1",
+            "violation_rule_ids": [
+              "VERIFIER_CITATION_DOES_NOT_SUPPORT_ACTION",
+              "VERIFIER_INCOMPLETE_CITATION_SUPPORT"
+            ]
+          }
+        },
+        "effective_route": "HOLD",
+        "learned_verifier": {
+          "artifact_sha256": "228362fef86903b160faf31b7056af6666717d7a9003aff833ca42ff58ba7968",
+          "feature_values": [
+            0.050000000000000044,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          "flagged": true,
+          "mode": "VETO_ONLY",
+          "risk_probability": 0.6778253010382718,
+          "schema_version": "1.0",
+          "threshold": 0.658808232744,
+          "verifier_id": "finops_learned_risk_verifier_stage4_v1"
+        },
+        "schema_version": "1.0",
+        "simulation_effect_recorded": false
+      }
+    },
+    {
+      "effect_count": 0,
+      "effect_count_valid": true,
+      "expectation_match": true,
+      "final_route": "HOLD",
+      "initial_route": "HOLD",
+      "reference_parity": true,
+      "release": {
+        "checkpoint_count": 2,
+        "last_checkpoint_sha256": "4473e1b379f54b933af4ad7fac4bebb74f7672aaa9b0c7191cb1792bac7d534a",
+        "release_sha256": "9f1913a0b34385594dbea6a951751969d3bac75c343925bb0d0370fb69ebd797",
+        "schema_version": "1.0",
+        "state_sha256": "71d47de2fee15effa0163c2f6b6e24ec4481cb7825422995cafd7e71f6f0b4dd",
+        "status": "RELEASED",
+        "thread_id": "thread-8"
+      },
+      "released_trace_immutable": true,
+      "scenario_id": "locked_planner_abstention_hold",
+      "state": {
+        "direct_state": {
+          "case_id": "STAGE4-locked_planner_abstention_hold",
+          "idempotency_key": "3d5e70a518c4437e0afd7305ce639153b3753dad0cd2129736697150a23c925f",
+          "policy": {
+            "external_execution": false,
+            "reason_code": "PLANNER_ABSTENTION",
+            "route": "HOLD",
+            "schema_version": "1.0",
+            "status": "HOLD",
+            "target": "TRADEOPS_SIM",
+            "violation_rule_ids": []
+          },
+          "receipt": null,
+          "review_request": null,
+          "review_resolution": null,
+          "route": "HOLD",
+          "schema_version": "1.0",
+          "status": "COMPLETED",
+          "trace": [
+            {
+              "input_sha256": "aa797c80b122a8145c7f549bb7f2251a454edbcbf8e9720e50b4041114d9ebbe",
+              "node": "INGEST",
+              "outcome": "BOUND",
+              "output_sha256": "3b908d419b6852cfc2d304ab188e59ac12442d4ec3e3c956fda0557c47c284fa",
+              "sequence": 1
+            },
+            {
+              "input_sha256": "f0f05cf70bfb53c346d9967466e9295b7d7075ff1f64e4808b3ad5ae711b65f3",
+              "node": "VERIFY",
+              "outcome": "ABSTAINED",
+              "output_sha256": "466e86fa5cf25d0474501ac468e5bf19901d208816057a4cd041bdf6f94db6e4",
+              "sequence": 2
+            },
+            {
+              "input_sha256": "601d034e2896cab584e38e9cc05db9d3090cc07d32265022d2ad58a6d09433e1",
+              "node": "POLICY",
+              "outcome": "HOLD",
+              "output_sha256": "de6ec81cac017203d943546b918807db330d64edfd73a915c0af1cea2819470e",
+              "sequence": 3
+            },
+            {
+              "input_sha256": "de6ec81cac017203d943546b918807db330d64edfd73a915c0af1cea2819470e",
+              "node": "ROUTE",
+              "outcome": "HOLD",
+              "output_sha256": "25c59efb1726961521a6f3b87d49dfa53d082f6db8931431624260b5a0d2dc65",
+              "sequence": 4
+            },
+            {
+              "input_sha256": "de6ec81cac017203d943546b918807db330d64edfd73a915c0af1cea2819470e",
+              "node": "COMPLETE",
+              "outcome": "HELD",
+              "output_sha256": "f6497865a366334fa5f5c7495ad6e587057da9093acbc79c144a3f57ed528068",
+              "sequence": 5
+            }
+          ],
+          "trace_complete": true,
+          "verification": {
+            "learned_verifier_used": false,
+            "schema_version": "1.0",
+            "status": "ABSTAINED",
+            "verified_evidence_ids": [],
+            "verifier_id": "finops_deterministic_policy_verifier_v1",
+            "violation_rule_ids": []
+          }
+        },
+        "effective_route": "HOLD",
+        "learned_verifier": {
+          "artifact_sha256": "228362fef86903b160faf31b7056af6666717d7a9003aff833ca42ff58ba7968",
+          "feature_values": [
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "flagged": true,
+          "mode": "VETO_ONLY",
+          "risk_probability": 0.9388089061364072,
+          "schema_version": "1.0",
+          "threshold": 0.658808232744,
+          "verifier_id": "finops_learned_risk_verifier_stage4_v1"
+        },
+        "schema_version": "1.0",
+        "simulation_effect_recorded": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": "2.0",
+  "candidate": {
+    "name": "FinOps-R",
+    "version": "0.4.0rc3",
+    "qualified_commit": null,
+    "claim_boundary": "controlled TradeOps-Sim and simulation-only orchestration"
+  },
+  "qualification_profile": "INTEGRATED_LOCAL_E3",
+  "evidence_levels": {
+    "Q0_file_inspection": "PASS",
+    "Q1_source_quality": "PASS",
+    "Q2_local_runtime": "PASS",
+    "Q3_built_artifact": "PASS",
+    "Q4_github_hosted": "NOT_RUN"
+  },
+  "environment": {
+    "os": "Linux x86_64",
+    "python": "3.12",
+    "supported_python": ">=3.11,<3.13",
+    "windows": "NOT_RUN",
+    "docker": "NOT_RUN",
+    "gpu": "NOT_REQUIRED"
+  },
+  "test_result": {
+    "passed": 200,
+    "subtests_passed": 61,
+    "failed": 0,
+    "ruff_lint": "PASS",
+    "ruff_format": "PASS",
+    "mypy_source_files": 34,
+    "mypy_issues": 0,
+    "clean_source_bundle_suite": "PASS"
+  },
+  "model_evaluation": {
+    "cases": 12000,
+    "release_status": "HOLD",
+    "production_champion": "C1",
+    "relative_harm_improvement_c5_vs_c1": -0.8762945914844646,
+    "stress_harm_ratio_c5_to_c1": 2.8403083700440526,
+    "unauthorized_action_count": 0
+  },
+  "stage4_orchestration": {
+    "status": "PASS",
+    "scenario_count": 9,
+    "langgraph_status": "PASS",
+    "duplicate_effect_count": 0,
+    "external_execution_count": 0
+  },
+  "stage5_integrated": {
+    "status": "PASS",
+    "gate_count": 12,
+    "failed_gates": [],
+    "model_promotion_status": "HOLD",
+    "production_champion": "C1",
+    "final_release_status": "BLOCKED_EXTERNAL_CI"
+  },
+  "built_artifact_result": {
+    "source_bundle": "PASS",
+    "wheel_build": "PASS",
+    "wheel_install": "PASS",
+    "installed_version": "0.4.0rc3",
+    "stage5_import": "PASS"
+  },
+  "unresolved_items": [
+    "No configured remote or retained hosted workflow run",
+    "No GitHub-hosted workflow execution",
+    "Windows and Python 3.11 not executed in this qualification",
+    "Docker not executed",
+    "C5 remains HOLD under the locked model gates"
+  ],
+  "final_verdict": "CONDITIONALLY_QUALIFIED",
+  "final_release_status": "BLOCKED_EXTERNAL_CI"
+}

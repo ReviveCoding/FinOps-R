@@ -1,0 +1,187 @@
+from __future__ import annotations
+
+import argparse
+import hashlib
+import re
+import tempfile
+import zipfile
+from pathlib import Path, PurePosixPath
+from typing import Any
+
+from finops_r.artifacts import atomic_json, sha256_file
+from finops_r.integrated_qualification_stage5 import verify_integrated_qualification
+from finops_r.json_safety import strict_json_dumps
+from finops_r.stage4_qualification import verify_stage4_qualification
+
+BUNDLE_ROOT = "JPMC01_FinOps-R_v0.4.0rc3"
+STAGE4_QUALIFICATION = PurePosixPath("artifacts/qualification/orchestration_stage4_v1r2")
+STAGE5_QUALIFICATION = PurePosixPath("artifacts/qualification/integrated_stage5_v1r1")
+EXCLUDED_PARTS = {
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    "__pycache__",
+    "finops_r.egg-info",
+}
+EXCLUDED_FILES = {
+    ".coverage",
+    "STAGE4_SOURCE_BUNDLE_SHA256.txt",
+    "STAGE5_SOURCE_BUNDLE_SHA256.txt",
+}
+_COMMIT_PATTERN = re.compile(r"^[0-9a-f]{40}$")
+
+
+def _included(relative: PurePosixPath) -> bool:
+    if any(part in EXCLUDED_PARTS for part in relative.parts):
+        return False
+    if relative.name in EXCLUDED_FILES or relative.suffix in {".pyc", ".pyo"}:
+        return False
+    if relative.parts and relative.parts[0] == "artifacts":
+        return relative.is_relative_to(STAGE4_QUALIFICATION) or relative.is_relative_to(
+            STAGE5_QUALIFICATION
+        )
+    return True
+
+
+def _inventory(root: Path) -> list[tuple[PurePosixPath, Path, int, str]]:
+    records: list[tuple[PurePosixPath, Path, int, str]] = []
+    for path in sorted(root.rglob("*")):
+        if path.is_symlink():
+            raise ValueError(f"source bundle cannot contain a symlink: {path}")
+        if not path.is_file():
+            continue
+        relative = PurePosixPath(path.relative_to(root).as_posix())
+        if _included(relative):
+            records.append((relative, path, path.stat().st_size, sha256_file(path)))
+    if not records:
+        raise ValueError("source bundle inventory is empty")
+    return records
+
+
+def _entry(name: str) -> zipfile.ZipInfo:
+    info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+    info.create_system = 3
+    info.external_attr = 0o100644 << 16
+    info.compress_type = zipfile.ZIP_DEFLATED
+    return info
+
+
+def build_bundle(
+    *,
+    source_root: Path,
+    candidate_commit: str,
+    output_zip: Path,
+    output_manifest: Path,
+) -> dict[str, Any]:
+    candidate_commit = candidate_commit.lower()
+    if not _COMMIT_PATTERN.fullmatch(candidate_commit):
+        raise ValueError("candidate_commit must be a full 40-character Git commit")
+    source_root = source_root.resolve()
+    records = _inventory(source_root)
+    inventory_text = "".join(
+        f"{checksum}  {size}  {relative.as_posix()}\n" for relative, _, size, checksum in records
+    )
+    output_zip.parent.mkdir(parents=True, exist_ok=True)
+    temporary: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            dir=output_zip.parent,
+            prefix=f".{output_zip.name}.",
+            suffix=".partial",
+            delete=False,
+        ) as handle:
+            temporary = Path(handle.name)
+        with zipfile.ZipFile(
+            temporary,
+            mode="w",
+            compression=zipfile.ZIP_DEFLATED,
+            compresslevel=9,
+            strict_timestamps=True,
+        ) as archive:
+            for relative, path, _, _ in records:
+                archive.writestr(
+                    _entry(f"{BUNDLE_ROOT}/{relative.as_posix()}"),
+                    path.read_bytes(),
+                    compress_type=zipfile.ZIP_DEFLATED,
+                    compresslevel=9,
+                )
+            archive.writestr(
+                _entry(f"{BUNDLE_ROOT}/E4_CANDIDATE_SOURCE_SHA256.txt"),
+                inventory_text.encode("utf-8"),
+                compress_type=zipfile.ZIP_DEFLATED,
+                compresslevel=9,
+            )
+        with zipfile.ZipFile(temporary, mode="r") as archive:
+            if archive.testzip() is not None:
+                raise ValueError("source bundle CRC verification failed")
+            if len(archive.infolist()) != len(records) + 1:
+                raise ValueError("source bundle ZIP entry count is invalid")
+            for relative, _, size, checksum in records:
+                value = archive.read(f"{BUNDLE_ROOT}/{relative.as_posix()}")
+                if len(value) != size or hashlib.sha256(value).hexdigest() != checksum:
+                    raise ValueError(f"source bundle entry mismatch: {relative}")
+            if archive.read(
+                f"{BUNDLE_ROOT}/E4_CANDIDATE_SOURCE_SHA256.txt"
+            ) != inventory_text.encode("utf-8"):
+                raise ValueError("source bundle inventory bytes changed")
+        temporary.replace(output_zip)
+        temporary = None
+    finally:
+        if temporary is not None and temporary.exists():
+            temporary.unlink()
+
+    stage4 = verify_stage4_qualification(source_root / STAGE4_QUALIFICATION.as_posix())
+    stage5 = verify_integrated_qualification(source_root / STAGE5_QUALIFICATION.as_posix())
+    result = {
+        "schema_version": "1.0",
+        "candidate_version": "0.4.0rc3",
+        "candidate_commit": candidate_commit,
+        "bundle_file": output_zip.name,
+        "bundle_bytes": output_zip.stat().st_size,
+        "bundle_sha256": sha256_file(output_zip),
+        "source_file_count": len(records),
+        "zip_entry_count": len(records) + 1,
+        "stage4_qualification": stage4,
+        "stage5_qualification": stage5,
+        "e4_hosted_ci_status": "NOT_RUN",
+        "model_promotion_status": "HOLD",
+        "production_champion": "C1",
+        "upstream_rc2_bundle_sha256": (
+            "c9afad09957d92ee75da6699a6757e35ccd574be4e93e281e0b422dd9113fde8"
+        ),
+        "status": "READY_FOR_HOSTED_CI",
+    }
+    atomic_json(output_manifest, result)
+    return result
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Build the deterministic FinOps-R rc3 E4 candidate source bundle"
+    )
+    parser.add_argument("--source-root", type=Path, default=Path("."))
+    parser.add_argument("--candidate-commit", required=True)
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=Path("JPMC01_FinOps-R_v0.4.0rc3_e4_candidate_source.zip"),
+    )
+    parser.add_argument(
+        "--manifest",
+        type=Path,
+        default=Path("JPMC01_FinOps-R_v0.4.0rc3_e4_candidate_manifest.json"),
+    )
+    args = parser.parse_args()
+    result = build_bundle(
+        source_root=args.source_root,
+        candidate_commit=args.candidate_commit,
+        output_zip=args.output,
+        output_manifest=args.manifest,
+    )
+    print(strict_json_dumps(result, indent=2, sort_keys=True))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
