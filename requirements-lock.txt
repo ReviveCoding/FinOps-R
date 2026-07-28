@@ -17,7 +17,7 @@ joblib==1.5.3
 kiwisolver==1.5.0
 librt==0.13.0
 matplotlib==3.11.0
-mypy==1.20.2
+mypy==2.3.0
 mypy_extensions==1.1.0
 narwhals==2.24.0
 numpy==2.3.5
