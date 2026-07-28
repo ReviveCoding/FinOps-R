@@ -22,7 +22,7 @@ mypy_extensions==1.1.0
 narwhals==2.24.0
 numpy==2.3.5
 packaging==26.2
-pandas==2.3.3
+pandas==3.0.5
 pathspec==1.1.1
 pillow==12.3.0
 pluggy==1.6.0
