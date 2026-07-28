@@ -317,6 +317,8 @@ class ArtifactTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "record.json"
             atomic_json(path, {"status": "PASS"})
+            self.assertNotIn(b"\r\n", path.read_bytes())
+            self.assertTrue(path.read_bytes().endswith(b"\n"))
             self.assertEqual(json.loads(path.read_text(encoding="utf-8"))["status"], "PASS")
 
     def test_concurrent_atomic_json_readers_never_observe_partial_content(self) -> None:

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import sys
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -92,13 +93,14 @@ class HostedE4EvidenceTests(unittest.TestCase):
                 verify_hosted_e4_evidence(root, expected_commit=self.commit)
 
     def _hosted_environment(self) -> dict[str, str]:
+        matrix_python = f"{sys.version_info.major}.{sys.version_info.minor}"
         return {
             "GITHUB_ACTIONS": "true",
             "GITHUB_SHA": self.commit,
             "FINOPS_EXPECTED_COMMIT": self.commit,
             "RUNNER_OS": "Linux",
             "RUNNER_ARCH": "X64",
-            "FINOPS_MATRIX_PYTHON": "3.12",
+            "FINOPS_MATRIX_PYTHON": matrix_python,
             "GITHUB_REPOSITORY": "owner/finops-r",
             "GITHUB_WORKFLOW": "ci",
             "GITHUB_WORKFLOW_REF": ("owner/finops-r/.github/workflows/ci.yml@refs/heads/main"),
@@ -107,8 +109,9 @@ class HostedE4EvidenceTests(unittest.TestCase):
         }
 
     def test_hosted_writer_reverifies_locked_stage4_and_stage5(self) -> None:
+        matrix_python = f"{sys.version_info.major}.{sys.version_info.minor}"
         with TemporaryDirectory() as temp:
-            output = Path(temp) / "e4-cell-linux-py3.12.json"
+            output = Path(temp) / f"e4-cell-linux-py{matrix_python}.json"
             result = write_hosted_cell_evidence(
                 output_path=output,
                 environment=self._hosted_environment(),
@@ -119,11 +122,15 @@ class HostedE4EvidenceTests(unittest.TestCase):
                     self.repository_root / "artifacts/qualification/integrated_stage5_v1r1"
                 ),
             )
-            persisted = json.loads(output.read_text(encoding="utf-8"))
+            output_bytes = output.read_bytes()
+            persisted = json.loads(output_bytes.decode("utf-8"))
         self.assertEqual(result, persisted)
+        self.assertEqual(result["runner"]["python"], matrix_python)
         self.assertEqual(result["checks"]["stage4_orchestration"], "PASS")
         self.assertEqual(result["checks"]["stage5_integrated"], "PASS")
         self.assertEqual(result["checks"]["model_promotion"], "HOLD")
+        self.assertNotIn(b"\r\n", output_bytes)
+        self.assertTrue(output_bytes.endswith(b"\n"))
 
     def test_writer_rejects_non_hosted_execution(self) -> None:
         with TemporaryDirectory() as temp:

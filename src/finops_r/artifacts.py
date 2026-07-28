@@ -14,7 +14,7 @@ from typing import Any
 import joblib
 import pandas as pd
 
-from .json_safety import StrictJSONError, strict_json_dump, strict_json_dumps, strict_json_load
+from .json_safety import StrictJSONError, strict_json_dumps, strict_json_load
 from .path_safety import is_portable_component
 
 
@@ -112,11 +112,11 @@ def atomic_json(path: Path, value: Any) -> None:
     temporary: Path | None = None
     try:
         with tempfile.NamedTemporaryFile(
-            "w", encoding="utf-8", dir=path.parent, prefix=f".{path.name}.", delete=False
+            "wb", dir=path.parent, prefix=f".{path.name}.", delete=False
         ) as handle:
             temporary = Path(handle.name)
-            strict_json_dump(value, handle, indent=2, sort_keys=True)
-            handle.write("\n")
+            canonical = strict_json_dumps(value, indent=2, sort_keys=True) + "\n"
+            handle.write(canonical.encode("utf-8"))
             _flush_and_sync(handle)
         _atomic_replace(temporary, path)
     finally:

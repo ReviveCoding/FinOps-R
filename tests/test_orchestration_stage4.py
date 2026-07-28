@@ -3,6 +3,7 @@ from __future__ import annotations
 import sqlite3
 import tempfile
 import unittest
+from contextlib import closing
 from pathlib import Path
 
 from finops_r.checkpointing_stage4 import (
@@ -168,6 +169,25 @@ class Stage4OrchestrationTests(unittest.TestCase):
         self.assertEqual(recovered.effective_route, "SIMULATE")
         self.assertTrue(recovered.simulation_effect_recorded)
 
+    def test_database_is_immediately_removable_after_normal_operation(self) -> None:
+        self.store.bind_thread("removable-normal", "a" * 64)
+        self.assertEqual(self.store.load("removable-normal"), ())
+        self.db_path.unlink()
+        self.assertFalse(self.db_path.exists())
+
+    def test_database_is_immediately_removable_after_injected_failure(self) -> None:
+        def fail_receipt() -> dict[str, object]:
+            raise RuntimeError("injected receipt failure")
+
+        with self.assertRaisesRegex(RuntimeError, "injected receipt failure"):
+            self.store.record_simulation_once(
+                idempotency_key="b" * 64,
+                request={"case_id": "failure"},
+                receipt_factory=fail_receipt,
+            )
+        self.db_path.unlink()
+        self.assertFalse(self.db_path.exists())
+
     def test_review_interrupt_resume_and_crash_replay_are_idempotent(self) -> None:
         inputs = self._inputs(
             case_id="STAGE4-REVIEW-1",
@@ -242,7 +262,7 @@ class Stage4OrchestrationTests(unittest.TestCase):
 
     def test_checkpoint_hash_tamper_is_detected(self) -> None:
         self.orchestrator.start("tamper", self._inputs(case_id="STAGE4-TAMPER"))
-        with sqlite3.connect(self.db_path) as connection:
+        with closing(sqlite3.connect(self.db_path)) as connection, connection:
             connection.execute(
                 """
                 UPDATE checkpoints
@@ -292,7 +312,9 @@ class Stage4OrchestrationTests(unittest.TestCase):
             threshold_path=threshold,
             output_path=generated,
         )
-        self.assertEqual(generated.read_bytes(), FROZEN_VERIFIER.read_bytes())
+        generated_bytes = generated.read_bytes()
+        self.assertNotIn(b"\r\n", generated_bytes)
+        self.assertEqual(generated_bytes, FROZEN_VERIFIER.read_bytes())
         artifact, _ = load_frozen_verifier(FROZEN_VERIFIER)
         result = verify_frozen_verifier_provenance(
             artifact,

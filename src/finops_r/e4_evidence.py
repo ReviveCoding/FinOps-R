@@ -118,10 +118,8 @@ def write_hosted_cell_evidence(
         },
     }
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(
-        strict_json_dumps(record, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
+    canonical = strict_json_dumps(record, indent=2, sort_keys=True) + "\n"
+    output_path.write_bytes(canonical.encode("utf-8"))
     return record
 
 
