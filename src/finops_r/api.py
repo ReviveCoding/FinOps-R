@@ -38,10 +38,10 @@ def create_app(run_dir: str | Path) -> Any:
                         f"assessment request body exceeds {MAX_ASSESSMENT_JSON_BYTES} bytes"
                     )
                 _strict_request_object(await request.body())
-            except (StrictJSONError, ValueError) as exc:
+            except (StrictJSONError, ValueError):
                 return JSONResponse(
                     status_code=400,
-                    content={"detail": f"invalid or ambiguous JSON: {exc}"},
+                    content={"detail": "invalid or ambiguous JSON"},
                 )
         return await call_next(request)
 
