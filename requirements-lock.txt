@@ -1,7 +1,7 @@
 # FinOps-R v0.4.0 core qualification environment, Python 3.12 Linux.
 # Install this file before installing FinOps-R with --no-deps.
 annotated-doc==0.0.4
-annotated-types==0.7.0
+annotated-types==0.8.0
 anyio==4.14.2
 build==1.5.0
 click==8.4.2
