@@ -98,7 +98,7 @@ jobs:
           python -m venv .artifact-venv
           .artifact-venv/bin/python -m pip install dist/*.whl
           .artifact-venv/bin/python -m pip check
-          .artifact-venv/bin/python -c "import finops_r; assert finops_r.__version__ == '0.4.0rc3'"
+          .artifact-venv/bin/python -c "import finops_r; assert finops_r.__version__ == '0.4.0'"
           .artifact-venv/bin/finops-r --version
           .artifact-venv/bin/finops-r --help
           .artifact-venv/bin/finops-r data list

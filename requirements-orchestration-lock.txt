@@ -1,4 +1,4 @@
-# FinOps-R v0.4.0rc3 optional orchestration layer, Python 3.12 Linux.
+# FinOps-R v0.4.0 optional orchestration layer, Python 3.12 Linux.
 # Install after requirements-lock.txt.
 aiosqlite==0.22.1
 certifi==2026.7.22

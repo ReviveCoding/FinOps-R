@@ -1,15 +1,30 @@
-# FinOps-R 0.4.0rc3 release notes
+# FinOps-R 0.4.0 release notes
 
-FinOps-R 0.4.0rc3 is the E4 hosted-CI candidate. It corrects the stale wheel-version
-assertion in the existing workflow, runs the locked Stage 4 and Stage 5 independent
-verifiers in every Linux/Windows and Python 3.11/3.12 matrix cell, rejects a checkout
-whose commit differs from the requested commit, and emits one machine-readable evidence
-record per successful hosted runner.
+FinOps-R 0.4.0 is the final release of the Stage 4 durable orchestration and
+Stage 5 integrated qualification package. Release publication requires
+exact-commit GitHub-hosted verification on Linux and Windows with Python 3.11
+and 3.12, followed by verification of the complete four-cell E4 evidence set.
 
-The E4 verifier requires exactly four distinct cells from one GitHub Actions run and one
-immutable commit. Passing E4 does not alter the locked scientific judgment: C5 remains
-HOLD and C1 remains the production reference. Until a retained hosted run is verified,
-the final release status remains `BLOCKED_EXTERNAL_CI`.
+The release includes strict JSON boundary enforcement, bounded API request and
+error handling, built-wheel verification, fail-closed artifact validation and
+the corrected CodeQL stack-trace-exposure path. These changes do not alter the
+locked scientific decision: C5 remains HOLD and C1 remains the production
+reference.
+
+The final tag must point to the exact commit that passes CI, Security and E4.
+The retained E4 evidence and distribution checksums are release assets rather
+than self-referential fields embedded in the tagged commit.
+
+## Prior 0.4.0rc3 release
+
+FinOps-R 0.4.0rc3 introduced the exact-commit E4 hosted-CI contract. It runs the
+locked Stage 4 and Stage 5 independent verifiers in every Linux/Windows and
+Python 3.11/3.12 matrix cell and emits one machine-readable evidence record per
+successful hosted runner.
+
+The E4 verifier requires exactly four distinct cells from one GitHub Actions
+run and one immutable commit. Passing E4 does not alter the locked scientific
+judgment: C5 remains HOLD and C1 remains the production reference.
 
 ## Prior 0.4.0rc2 release
 

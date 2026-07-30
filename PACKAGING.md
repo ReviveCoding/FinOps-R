@@ -1,6 +1,6 @@
 # Packaging and release
 
-FinOps-R v0.4.0rc3 uses `pyproject.toml` as the build configuration and produces a wheel plus source distribution.
+FinOps-R v0.4.0 uses `pyproject.toml` as the build configuration and produces a wheel plus source distribution.
 
 ## Local qualification
 
@@ -23,7 +23,7 @@ Windows uses `scripts/qualify.ps1`. The exact `requirements-lock.txt` is the Lin
 
 ```bash
 python -m build
-python -m pip install --force-reinstall --no-deps dist/finops_r-0.4.0rc3-py3-none-any.whl
+python -m pip install --force-reinstall --no-deps dist/finops_r-0.4.0-py3-none-any.whl
 finops-r --help
 finops-r data list
 ```
@@ -34,7 +34,7 @@ The sdist and wheel must include `finops_r/dataset_registry.json`. CI verifies t
 
 1. Require the CI and security checks on the default branch.
 2. Update `CHANGELOG.md` and run the locked qualification.
-3. After E4 evidence passes, create an annotated `v0.4.0rc3` tag from the reviewed commit.
+3. After E4 evidence passes, create an annotated `v0.4.0` tag from the reviewed commit.
 4. Build from a clean checkout and attach the wheel, sdist and SHA-256 checksum file to the GitHub release.
 5. Do not attach source datasets, staged external data, run directories or untrusted joblib artifacts.
 

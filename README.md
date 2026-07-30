@@ -1,4 +1,4 @@
-# FinOps-R v0.4.0rc3
+# FinOps-R v0.4.0
 
 FinOps-R is an end-to-end, risk-controlled benchmark for T+1 post-trade exception resolution. It generates a leakage-safe controlled dataset, trains a fixed candidate ladder, calibrates decisions, allocates scarce human review, validates action evidence, measures residual harm and promotes a model only when every locked release gate passes.
 
@@ -114,8 +114,8 @@ needed for local diagnosis. Normal failures return exit code 2 and a bounded JSO
 ## Docker
 
 ```bash
-docker build -t finops-r:0.4.0rc3 .
-docker run --rm -v "$PWD/artifacts:/app/artifacts" finops-r:0.4.0rc3 \
+docker build -t finops-r:0.4.0 .
+docker run --rm -v "$PWD/artifacts:/app/artifacts" finops-r:0.4.0 \
   run --config configs/smoke.json
 ```
 

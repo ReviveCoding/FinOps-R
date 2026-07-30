@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.4.0
+
+- Promoted the E4-qualified release candidate to the final 0.4.0 package.
+- Required exact-commit hosted verification across Linux and Windows on Python
+  3.11 and 3.12 before tagging or publication.
+- Preserved the locked scientific decision: C5 remains HOLD and C1 remains the
+  production reference.
+- Added strict JSON boundaries that reject duplicate keys, non-finite numbers,
+  finite-float overflow and non-object configuration or request payloads.
+- Added a 1 MiB API request limit and bounded normal error responses while
+  preserving explicit traceback diagnostics under debug mode.
+- Closed the CodeQL stack-trace-exposure finding.
+- Raised the verified suite to 202 passing tests with 81.13% branch coverage.
+
+## 0.4.0rc3
+
+- Added an exact-commit GitHub-hosted E4 evidence contract.
+- Required Linux and Windows on Python 3.11 and 3.12 to reverify Stage 4 and Stage 5.
+- Added a strict four-cell evidence-set verifier and failure tests.
+- Corrected the CI wheel assertion from stale version 0.3.0 to 0.4.0rc3.
+- Raised the full suite to 200 tests plus 61 subtests with 81.11% branch coverage.
+- Preserved model promotion HOLD and C1 as the production reference.
+
+## 0.4.0rc2
+
+- Added a locked Stage 5 integrated qualification joining the model release and Stage 4
+  orchestration evidence without retuning either test family.
+- Added independent verification, artifact hashing and a human-readable integrated report.
+- Kept model promotion and final release status separate from local software qualification.
+- Preserved C1 as the safe production fallback when the locked C5 gates remain HOLD.
+
 ## 0.4.0rc1
 
 - Added an optional LangGraph path that shares the typed Stage 4 reference
@@ -15,15 +46,6 @@
   parity, HITL, duplicate-effect, crash-replay, external-execution and trace
   immutability gates.
 - Kept public auxiliary datasets outside the canonical Stage 4 execution path.
-
-## Unreleased JSON hardening candidate
-
-- Added one strict JSON boundary that rejects duplicate object keys, `NaN`, `Infinity`,
-  `-Infinity`, finite-float overflow and non-object config/request payloads.
-- Routed config, dataset registry, artifact manifests, runtime metadata, release metadata,
-  rollback input and CLI JSON through the strict boundary.
-- Added strict JSON validation and a 1 MiB request limit before FastAPI model validation.
-- Added regression coverage for ambiguous config, registry, file request and API JSON.
 
 ## 0.3.0
 
@@ -111,19 +133,3 @@
 - Added locked dependencies, Linux and Windows qualification scripts, CI matrix, coverage, lint and build gates.
 - Added failure tests for malformed data, path traversal, non-finite input, capacity, corruption, interrupted publication and incompatible model runtime.
 - Preserved the negative result: C5 remains HOLD and C1 remains the fallback.
-# 0.4.0rc3
-
-- Added an exact-commit GitHub-hosted E4 evidence contract.
-- Required Linux and Windows on Python 3.11 and 3.12 to reverify Stage 4 and Stage 5.
-- Added a strict four-cell evidence-set verifier and failure tests.
-- Corrected the CI wheel assertion from stale version 0.3.0 to 0.4.0rc3.
-- Raised the full suite to 200 tests plus 61 subtests with 81.11% branch coverage.
-- Preserved model promotion HOLD and C1 as the production reference.
-
-# 0.4.0rc2
-
-- Added a locked Stage 5 integrated qualification joining the model release and Stage 4
-  orchestration evidence without retuning either test family.
-- Added independent verification, artifact hashing and a human-readable integrated report.
-- Kept model promotion and final release status separate from local software qualification.
-- Preserved C1 as the safe production fallback when the locked C5 gates remain HOLD.

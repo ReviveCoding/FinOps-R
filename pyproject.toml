@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "finops-r"
-version = "0.4.0rc3"
+version = "0.4.0"
 description = "Risk-controlled T+1 post-trade exception resolution benchmark and product framework"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
