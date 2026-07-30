@@ -35,7 +35,7 @@ pytest==9.0.3
 pytest-cov==7.1.0
 python-dateutil==2.9.0.post0
 pytz==2026.2
-ruff==0.15.22
+ruff==0.16.0
 scikit-learn==1.9.0
 scipy==1.18.0
 setuptools==83.0.0
