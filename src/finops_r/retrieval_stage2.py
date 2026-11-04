@@ -6,7 +6,7 @@ import platform
 import statistics
 import sys
 import time
-from datetime import UTC, datetime, timezone
+from datetime import UTC, datetime
 from importlib import metadata
 from pathlib import Path
 from typing import Any, Literal, Protocol

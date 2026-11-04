@@ -11,7 +11,7 @@ import tempfile
 import xml.etree.ElementTree as ET
 from collections import Counter
 from collections.abc import Iterable
-from datetime import UTC, datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 

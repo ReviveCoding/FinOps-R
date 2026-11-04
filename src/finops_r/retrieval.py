@@ -4,7 +4,7 @@ import hashlib
 import math
 import re
 from collections import Counter
-from datetime import UTC, datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Literal
 

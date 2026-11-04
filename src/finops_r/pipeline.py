@@ -9,7 +9,7 @@ import tempfile
 import time
 import uuid
 from collections.abc import Callable
-from datetime import UTC, datetime, timezone
+from datetime import UTC, datetime
 from importlib.metadata import version
 from pathlib import Path, PurePosixPath
 from typing import Any
