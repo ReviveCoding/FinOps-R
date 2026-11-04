@@ -8,7 +8,6 @@ from .planner import ActionPacket, PlannerRequest
 from .policy_cards import CompiledPolicyCard
 from .retrieval import RetrievalHit
 
-
 VERIFIER_SCHEMA_VERSION = "1.0"
 VERIFIER_ID = "finops_deterministic_policy_verifier_v1"
 CLAIM_BOUNDARY = "CONTROLLED_TRADEOPS_SIM_ONLY"

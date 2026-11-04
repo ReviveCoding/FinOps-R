@@ -10,10 +10,10 @@ import shutil
 import tempfile
 import xml.etree.ElementTree as ET
 from collections import Counter
-from datetime import datetime, timezone
+from collections.abc import Iterable
+from datetime import UTC, datetime, timezone
 from pathlib import Path
-from typing import Any, Iterable
-
+from typing import Any
 
 EXPECTED_ARCHIVE_BYTES = 29_658_747
 EXPECTED_ARCHIVE_MD5 = "10b37a2f78e870d78406198403ff13d2"
@@ -67,7 +67,7 @@ def _parse_timestamp(value: str, context: str) -> datetime:
         raise BpiContractError(f"{context}: invalid ISO-8601 timestamp {value!r}") from exc
     if parsed.tzinfo is None or parsed.utcoffset() is None:
         raise BpiContractError(f"{context}: timestamp must include an offset")
-    return parsed.astimezone(timezone.utc)
+    return parsed.astimezone(UTC)
 
 
 def _iso(value: datetime) -> str:

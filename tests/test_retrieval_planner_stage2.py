@@ -16,9 +16,9 @@ from finops_r.planner_stage2 import (
     DEFAULT_EVALUATION_SEEDS,
     DEVELOPMENT_SCENARIOS_SHA256,
     NON_THINKING_MAX_NEW_TOKENS,
-    PlannerScenarioBundle,
     QUALIFICATION_HOLDOUT_SHA256,
     THINKING_MAX_NEW_TOKENS,
+    PlannerScenarioBundle,
     build_stage2_qwen_messages,
     exact_snapshot_object,
     extract_final_response,
@@ -43,7 +43,6 @@ from finops_r.stage2_verification import (
     STAGE2_IMPLEMENTATION_REVISION,
     verify_stage2_artifact,
 )
-
 
 ROOT = Path(__file__).parents[1]
 SOURCE_CARDS = ROOT / "data" / "policy_cards" / "source_cards.json"

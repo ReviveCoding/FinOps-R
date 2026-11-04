@@ -13,7 +13,6 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-
 CFPB_COLUMNS = (
     "Date received",
     "Product",

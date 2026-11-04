@@ -9,7 +9,6 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-
 EXPECTED_FILES = {"applications.csv", "events.csv.gz", "offers.csv", "manifest.json"}
 EXPECTED_COUNTS = {
     "applications": 31_509,

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime, timezone
 from pathlib import Path, PureWindowsPath
 from typing import Any, Literal
 
@@ -32,7 +32,7 @@ class EnsembleConfig(ContractModel):
     weight_extra: float = Field(ge=0.0)
 
     @model_validator(mode="after")
-    def weights_must_have_positive_mass(self) -> "EnsembleConfig":
+    def weights_must_have_positive_mass(self) -> EnsembleConfig:
         if self.weight_hist + self.weight_extra <= 0.0:
             raise ValueError("ensemble weights must have positive total mass")
         return self
@@ -110,7 +110,7 @@ class ProjectConfig(ContractModel):
         return value
 
     @model_validator(mode="after")
-    def temperature_bounds_must_be_ordered(self) -> "ProjectConfig":
+    def temperature_bounds_must_be_ordered(self) -> ProjectConfig:
         lower, upper = self.temperature_bounds
         if lower <= 0.0 or lower >= upper:
             raise ValueError("temperature_bounds must be positive and strictly increasing")
@@ -178,7 +178,7 @@ class CaseSnapshot(ContractModel):
     def decision_time_requires_timezone(cls, value: datetime) -> datetime:
         if value.tzinfo is None or value.utcoffset() is None:
             raise ValueError("decision_time must be timezone-aware")
-        return value.astimezone(timezone.utc)
+        return value.astimezone(UTC)
 
 
 class EvidenceItem(ContractModel):

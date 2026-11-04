@@ -6,7 +6,6 @@ import hashlib
 import json
 from pathlib import Path
 
-
 EXPECTED_CSV_BYTES = 1_882_740_229
 EXPECTED_CSV_SHA256 = "7e67e619c39baecc75d41091cb7a6d4b9f9e9fd700e0d406c9cc1f3a7156b8e1"
 EXPECTED_QUARANTINE_BYTES = 90

@@ -7,7 +7,7 @@ import os
 import time
 from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, IO
+from typing import IO, Any
 
 
 class StrictJSONError(ValueError):

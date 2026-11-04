@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import re
-from datetime import datetime, timezone
+from datetime import UTC, datetime, timezone
 from pathlib import Path
 from typing import Any, Literal
 
@@ -14,7 +14,6 @@ from .json_safety import require_json_object, strict_json_dumps, strict_json_loa
 from .policy_cards import VALID_ACTIONS
 from .retrieval import RetrievalHit
 
-
 PLANNER_SCHEMA_VERSION = "1.0"
 PROMPT_VERSION = "finops_action_packet_v1"
 
@@ -22,7 +21,7 @@ PROMPT_VERSION = "finops_action_packet_v1"
 def _utc(value: datetime, field: str) -> datetime:
     if value.tzinfo is None or value.utcoffset() is None:
         raise ValueError(f"{field} must be timezone-aware")
-    return value.astimezone(timezone.utc)
+    return value.astimezone(UTC)
 
 
 class PlannerRequest(BaseModel):
@@ -108,7 +107,7 @@ class ActionPacket(BaseModel):
         return value
 
     @model_validator(mode="after")
-    def abstention_is_fail_closed(self) -> "ActionPacket":
+    def abstention_is_fail_closed(self) -> ActionPacket:
         holding = self.action_code == "HOLD_FOR_REVIEW"
         if holding != self.abstain:
             raise ValueError("HOLD_FOR_REVIEW and abstain must agree")
@@ -279,7 +278,7 @@ def write_planner_manifest(
         raise ValueError("retrieval_manifest_sha256 must be one lowercase SHA-256")
     sample = PlannerRequest(
         case_id="MANIFEST_SAMPLE",
-        decision_time=datetime(2026, 1, 1, tzinfo=timezone.utc),
+        decision_time=datetime(2026, 1, 1, tzinfo=UTC),
         predicted_cause="LATE_ALLOCATION",
         candidate_action=ACTION_BY_CAUSE["LATE_ALLOCATION"],
         permitted_actions=(ACTION_BY_CAUSE["LATE_ALLOCATION"], "HOLD_FOR_REVIEW"),

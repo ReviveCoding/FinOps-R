@@ -19,7 +19,7 @@ class RSOPTransformer:
     global_values_: np.ndarray | None = None
     fitted_: bool = False
 
-    def fit(self, frame: pd.DataFrame, y: pd.Series) -> "RSOPTransformer":
+    def fit(self, frame: pd.DataFrame, y: pd.Series) -> RSOPTransformer:
         if len(frame) != len(y):
             raise ValueError("frame and y length mismatch")
         healthy = frame.loc[np.asarray(y) == "NO_EXCEPTION"].copy()

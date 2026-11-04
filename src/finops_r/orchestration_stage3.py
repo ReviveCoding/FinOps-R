@@ -17,7 +17,6 @@ from .verification_policy import (
     verify_action_packet,
 )
 
-
 ORCHESTRATION_SCHEMA_VERSION = "1.0"
 TRACE_NODES = frozenset({"INGEST", "VERIFY", "POLICY", "ROUTE", "REVIEW", "SIMULATE", "COMPLETE"})
 

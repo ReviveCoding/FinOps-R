@@ -6,8 +6,9 @@ import hashlib
 import json
 import re
 import sys
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 from finops_r.integrated_qualification_stage5 import verify_integrated_qualification
 from finops_r.json_safety import strict_json_dumps

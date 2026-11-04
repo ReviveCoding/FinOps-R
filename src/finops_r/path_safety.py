@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 WINDOWS_DEVICE_NAMES = {"CON", "PRN", "AUX", "NUL"} | {
     f"{prefix}{number}" for prefix in ("COM", "LPT") for number in range(1, 10)
 }

@@ -9,8 +9,8 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from scripts.stage_bpi2017_snapshot import BpiContractError, stage_bpi2017_snapshot
 from scripts import verify_bpi2017_stage as verifier
+from scripts.stage_bpi2017_snapshot import BpiContractError, stage_bpi2017_snapshot
 
 
 def _trace(

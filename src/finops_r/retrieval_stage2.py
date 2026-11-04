@@ -6,7 +6,7 @@ import platform
 import statistics
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime, timezone
 from importlib import metadata
 from pathlib import Path
 from typing import Any, Literal, Protocol
@@ -32,7 +32,6 @@ from .retrieval import (
     reciprocal_rank_fusion,
 )
 
-
 STAGE2_SCHEMA_VERSION = "2.0"
 STAGE2_BENCHMARK_ID = "finops_policy_retrieval_locked_v2"
 STAGE2_BENCHMARK_SHA256 = "8588209b86427771cf3da1bc57db5220abd72a0eeb8b533c6ad09e17d04bc1bf"
@@ -45,7 +44,7 @@ QWEN_MODEL_REVISION = "1cfa9a7208912126459214e8b04321603b3df60c"
 def _utc(value: datetime, field: str) -> datetime:
     if value.tzinfo is None or value.utcoffset() is None:
         raise ValueError(f"{field} must be timezone-aware")
-    return value.astimezone(timezone.utc)
+    return value.astimezone(UTC)
 
 
 class Stage2Distractor(BaseModel):
@@ -64,7 +63,7 @@ class Stage2Distractor(BaseModel):
         return None if value is None else _utc(value, "distractor timestamp")
 
     @model_validator(mode="after")
-    def interval_is_valid(self) -> "Stage2Distractor":
+    def interval_is_valid(self) -> Stage2Distractor:
         if self.effective_to is not None and self.effective_to <= self.effective_from:
             raise ValueError("distractor effective interval is invalid")
         return self
@@ -131,7 +130,7 @@ class Stage2Benchmark(BaseModel):
         return _utc(value, "frozen_at")
 
     @model_validator(mode="after")
-    def bundle_is_locked_and_unique(self) -> "Stage2Benchmark":
+    def bundle_is_locked_and_unique(self) -> Stage2Benchmark:
         if not self.tuning_prohibited:
             raise ValueError("locked test benchmark cannot permit tuning")
         if tuple(self.top_k_values) != (1, 3, 5):
