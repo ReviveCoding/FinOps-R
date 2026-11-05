@@ -7,7 +7,6 @@ import pandas as pd
 
 from .constants import CRITICAL_CAUSES, HARM_BY_CAUSE
 
-
 ReviewPolicy = Literal["fifo", "confidence", "disagreement", "evr"]
 
 

@@ -27,7 +27,6 @@ from .retrieval_stage2 import (
     STAGE2_BENCHMARK_SHA256,
 )
 
-
 EXPECTED_FILES = {
     "evaluation_input_snapshot.json",
     "planner_mode_metrics.csv",

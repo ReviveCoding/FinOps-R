@@ -4,7 +4,7 @@ import hashlib
 import json
 import tempfile
 import unittest
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import numpy as np
@@ -36,7 +36,6 @@ from finops_r.retrieval import (
     reciprocal_rank_fusion,
     tokenize,
 )
-
 
 ROOT = Path(__file__).parents[1]
 SOURCE_CARDS = ROOT / "data" / "policy_cards" / "source_cards.json"
@@ -130,7 +129,7 @@ class RetrievalPlannerStage1Tests(unittest.TestCase):
     def test_future_policy_cannot_affect_present_retrieval(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             _, index = self._compiled(Path(directory))
-            before = datetime(2024, 5, 27, 15, tzinfo=timezone.utc)
+            before = datetime(2024, 5, 27, 15, tzinfo=UTC)
             hits = index.search("T+1 first business day", before, top_k=20)
             ids = {hit.document_id for hit in hits}
             self.assertIn("sec.rule15c6-1.standard_cycle.tplus2.legacy", ids)
@@ -139,12 +138,12 @@ class RetrievalPlannerStage1Tests(unittest.TestCase):
     def test_expired_policy_cannot_affect_later_retrieval(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             _, index = self._compiled(Path(directory))
-            after = datetime(2024, 5, 28, 0, tzinfo=timezone.utc)
+            after = datetime(2024, 5, 28, 0, tzinfo=UTC)
             ids = {hit.document_id for hit in index.search("settlement cycle", after, top_k=20)}
             self.assertNotIn("sec.rule15c6-1.standard_cycle.tplus2.legacy", ids)
 
     def test_case_artifact_observable_time_is_enforced(self) -> None:
-        now = datetime(2026, 1, 1, tzinfo=timezone.utc)
+        now = datetime(2026, 1, 1, tzinfo=UTC)
         checksum = hashlib.sha256(b"artifact").hexdigest()
         past = EvidenceDocument(
             document_id="a",
@@ -168,7 +167,7 @@ class RetrievalPlannerStage1Tests(unittest.TestCase):
         self.assertEqual([hit.document_id for hit in hits], ["a"])
 
     def test_case_artifact_cannot_authorize_an_action(self) -> None:
-        now = datetime(2026, 1, 1, tzinfo=timezone.utc)
+        now = datetime(2026, 1, 1, tzinfo=UTC)
         with self.assertRaises(ValidationError):
             EvidenceDocument(
                 document_id="a",
@@ -182,7 +181,7 @@ class RetrievalPlannerStage1Tests(unittest.TestCase):
             )
 
     def test_bm25_ties_break_by_document_id(self) -> None:
-        now = datetime(2026, 1, 1, tzinfo=timezone.utc)
+        now = datetime(2026, 1, 1, tzinfo=UTC)
         checksum = hashlib.sha256(b"artifact").hexdigest()
         docs = [
             EvidenceDocument(
@@ -201,7 +200,7 @@ class RetrievalPlannerStage1Tests(unittest.TestCase):
         )
 
     def test_dense_retrieval_validates_vectors_and_effective_time(self) -> None:
-        now = datetime(2026, 1, 1, tzinfo=timezone.utc)
+        now = datetime(2026, 1, 1, tzinfo=UTC)
         checksum = "a" * 64
         document = EvidenceDocument(
             document_id="a",

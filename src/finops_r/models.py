@@ -46,7 +46,7 @@ class RuleSanityClassifier:
                 return cause
         return "NO_EXCEPTION"
 
-    def fit(self, frame: pd.DataFrame, y: pd.Series) -> "RuleSanityClassifier":
+    def fit(self, frame: pd.DataFrame, y: pd.Series) -> RuleSanityClassifier:
         return self
 
     def predict(self, frame: pd.DataFrame) -> np.ndarray:
@@ -75,7 +75,7 @@ class TabularCandidate:
     classes_: np.ndarray | None = None
     fit_seconds_: float = 0.0
 
-    def fit(self, frame: pd.DataFrame, y: pd.Series) -> "TabularCandidate":
+    def fit(self, frame: pd.DataFrame, y: pd.Series) -> TabularCandidate:
         started = time.perf_counter()
         self.preprocessor = build_preprocessor(self.use_rsop)
         matrix = self.preprocessor.fit_transform(select_features(frame, self.use_rsop))
@@ -163,7 +163,7 @@ class TemperatureScaler:
 
     def fit(
         self, probabilities: np.ndarray, y: np.ndarray, classes: np.ndarray
-    ) -> "TemperatureScaler":
+    ) -> TemperatureScaler:
         self.classes_ = np.asarray(classes)
         index = {label: idx for idx, label in enumerate(self.classes_)}
         target = np.asarray([index[label] for label in y], dtype=int)

@@ -4,7 +4,7 @@ import hashlib
 import math
 import re
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Literal
 
@@ -14,7 +14,6 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 from .artifacts import atomic_json, sha256_file
 from .json_safety import require_json_object, strict_json_dumps, strict_json_load
 from .policy_cards import CompiledPolicyCard, load_compiled_policy_cards
-
 
 TOKENIZER_VERSION = "finops_ascii_terms_v1"
 INDEX_SCHEMA_VERSION = "1.0"
@@ -29,7 +28,7 @@ def tokenize(text: str) -> tuple[str, ...]:
 def _utc(value: datetime, field: str) -> datetime:
     if value.tzinfo is None or value.utcoffset() is None:
         raise ValueError(f"{field} must be timezone-aware")
-    return value.astimezone(timezone.utc)
+    return value.astimezone(UTC)
 
 
 class EvidenceDocument(BaseModel):
@@ -52,7 +51,7 @@ class EvidenceDocument(BaseModel):
         return None if value is None else _utc(value, "evidence timestamp")
 
     @model_validator(mode="after")
-    def interval_and_source_are_valid(self) -> "EvidenceDocument":
+    def interval_and_source_are_valid(self) -> EvidenceDocument:
         if self.effective_to is not None and self.effective_to <= self.effective_from:
             raise ValueError("effective_to must be later than effective_from")
         if self.source_type == "POLICY_CARD" and not self.source_url:
@@ -109,7 +108,7 @@ def policy_cards_to_documents(
                 title=card.title,
                 text=text,
                 source_url=card.source_url,
-                observable_at=datetime.combine(card.source_date, datetime.min.time(), timezone.utc),
+                observable_at=datetime.combine(card.source_date, datetime.min.time(), UTC),
                 effective_from=card.effective_from,
                 effective_to=card.effective_to,
                 allowed_actions=card.allowed_actions,

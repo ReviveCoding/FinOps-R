@@ -31,10 +31,49 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    permissions:
-      contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
         with:
-          fail-on-severity: moderate
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Compare dependency advisories
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          audit_dir="$(mktemp -d "$RUNNER_TEMP/dependency-review.XXXXXX")"
+          trap 'rm -rf "$audit_dir"' EXIT
+          curl --fail --silent --show-error --location --retry 3 \
+            https://github.com/google/osv-scanner/releases/download/v2.7.0/osv-scanner_linux_amd64 \
+            -o "$audit_dir/osv-scanner"
+          printf '%s  %s\n' \
+            160c6253e2922e9e0a6a9771c5c4c40a4b3c6090b34a3cdd5e80c96cc2e4218b \
+            "$audit_dir/osv-scanner" | sha256sum --check
+          chmod +x "$audit_dir/osv-scanner"
+
+          git archive "$BASE_SHA" -- requirements-lock.txt requirements-orchestration-lock.txt | tar -x -C "$audit_dir"
+          export XDG_CACHE_HOME="$audit_dir/cache"
+          touch "$audit_dir/osv-scanner.toml"
+
+          scan() {
+            local report="$1"
+            shift
+            local status=0
+            "$audit_dir/osv-scanner" scan source --offline --all-packages \
+              --config "$audit_dir/osv-scanner.toml" --format json \
+              --output-file "$report" "$@" || status=$?
+            # Exit 1 can indicate findings. A usable report is still required.
+            if [[ "$status" -gt 1 || ! -s "$report" ]]; then
+              printf 'OSV scan failed (exit %s).\n' "$status" >&2
+              return 1
+            fi
+          }
+
+          scan "$audit_dir/base.json" --download-offline-databases \
+            "--lockfile=requirements.txt:$audit_dir/requirements-lock.txt" \
+            "--lockfile=requirements.txt:$audit_dir/requirements-orchestration-lock.txt"
+          scan "$audit_dir/head.json" \
+            --lockfile=requirements.txt:requirements-lock.txt \
+            --lockfile=requirements.txt:requirements-orchestration-lock.txt
+          python3 scripts/review_dependencies.py "$audit_dir/base.json" "$audit_dir/head.json" --inputs 2

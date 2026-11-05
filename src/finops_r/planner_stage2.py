@@ -34,7 +34,6 @@ from .policy_cards import VALID_ACTIONS
 from .retrieval import EvidenceDocument, RetrievalHit
 from .retrieval_stage2 import QWEN_MODEL_ID, QWEN_MODEL_REVISION
 
-
 DEVELOPMENT_SCENARIOS_SHA256 = "233f9cb55032e3ce666e19cc3458f282bd764155d2723abc3bc7d6907a47e03f"
 QUALIFICATION_HOLDOUT_SHA256 = "32c2e351f372657a866a93f656ddbad7d631194573e6409c888ac689014d09e1"
 STAGE2_PROMPT_REVISION = "finops_action_packet_stage2_v5"
@@ -84,7 +83,7 @@ class PlannerScenario(BaseModel):
         return value
 
     @model_validator(mode="after")
-    def expected_state_is_consistent(self) -> "PlannerScenario":
+    def expected_state_is_consistent(self) -> PlannerScenario:
         request = self.request()
         if self.expected_hold != (self.expected_action == "HOLD_FOR_REVIEW"):
             raise ValueError("expected_hold must agree with expected_action")
@@ -123,7 +122,7 @@ class PlannerScenarioBundle(BaseModel):
     scenarios: list[PlannerScenario] = Field(min_length=10)
 
     @model_validator(mode="after")
-    def ids_are_unique(self) -> "PlannerScenarioBundle":
+    def ids_are_unique(self) -> PlannerScenarioBundle:
         ids = [item.scenario_id for item in self.scenarios]
         if len(ids) != len(set(ids)):
             raise ValueError("planner scenario IDs must be unique")

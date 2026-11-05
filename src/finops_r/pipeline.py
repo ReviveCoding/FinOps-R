@@ -9,7 +9,7 @@ import tempfile
 import time
 import uuid
 from collections.abc import Callable
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from importlib.metadata import version
 from pathlib import Path, PurePosixPath
 from typing import Any
@@ -57,7 +57,6 @@ from .models import TemperatureScaler, build_candidate
 from .reporting import calibration_table, generate_report
 from .specialty import RSOPTransformer
 
-
 CANDIDATE_META = {
     "C0": {"type": "sanity", "algorithm": "deterministic rules", "specialty": []},
     "C1": {"type": "industry", "algorithm": "histogram gradient boosting", "specialty": []},
@@ -86,7 +85,7 @@ _PYTHON_VERSION_PATTERN = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+$")
 def _log(event: str, **fields: Any) -> None:
     print(
         strict_json_dumps(
-            {"event": event, "timestamp": datetime.now(timezone.utc).isoformat(), **fields},
+            {"event": event, "timestamp": datetime.now(UTC).isoformat(), **fields},
             sort_keys=True,
         ),
         flush=True,
@@ -137,7 +136,7 @@ def load_config(path: Path) -> dict[str, Any]:
 
 
 def _run_identity(config: dict[str, Any]) -> str:
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    timestamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     nonce = uuid.uuid4().hex
     return f"finopsr_{timestamp}_{config_hash(config)[:10]}_{nonce}"
 
@@ -869,7 +868,7 @@ def _run_project(
     run_manifest = {
         "run_id": run_id,
         "project_version": __version__,
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
         "dataset_fingerprint": dataset_fingerprint,
         "config_hash": config_hash(config),
         "config_path": _portable_path(config_path, project_root),
@@ -1375,7 +1374,7 @@ def regenerate_report(run_dir: Path) -> tuple[Path, list[str]]:
         raise ArtifactVerificationError("artifact root must not be a symlink")
     source = run_dir.resolve()
     load_production_bundle(source)
-    refresh_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    refresh_id = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     destination_parent = source.parent / "report_refreshes" / f"{refresh_id}_{uuid.uuid4().hex[:8]}"
     destination = destination_parent / source.name
     with tempfile.TemporaryDirectory(prefix=f".{source.name}.report-refresh.") as directory:

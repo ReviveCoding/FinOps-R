@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import hashlib
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 import numpy as np
@@ -16,7 +16,6 @@ from .constants import (
     HARM_BY_CAUSE,
     STATES,
 )
-
 
 CAUSE_PROBABILITIES = np.array(
     [0.25, 0.06, 0.05, 0.05, 0.06, 0.06, 0.04, 0.08, 0.07, 0.05, 0.04, 0.05, 0.05, 0.04],
@@ -130,7 +129,7 @@ def _base_row(
         "trade_id": f"TR{case_idx:07d}",
         "entity_id": entity_id,
         "decision_time": (
-            datetime(2027, 1, 5, tzinfo=timezone.utc) + timedelta(minutes=case_idx)
+            datetime(2027, 1, 5, tzinfo=UTC) + timedelta(minutes=case_idx)
         ).isoformat(),
         "split": split,
         "generator_family": "STRESS_C"

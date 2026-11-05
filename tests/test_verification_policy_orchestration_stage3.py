@@ -24,7 +24,6 @@ from finops_r.verification_policy import (
     verify_action_packet,
 )
 
-
 ROOT = Path(__file__).parents[1]
 SOURCE_CARDS = ROOT / "data" / "policy_cards" / "source_cards.json"
 

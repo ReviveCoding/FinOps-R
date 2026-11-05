@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import re
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any, Literal
 
@@ -11,7 +11,6 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator, 
 from .artifacts import atomic_json, sha256_file
 from .constants import ACTION_BY_CAUSE
 from .json_safety import require_json_object, strict_json_dumps, strict_json_load
-
 
 SCHEMA_VERSION = "1.0"
 CARD_ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9_.-]{2,95}$")
@@ -72,7 +71,7 @@ class PolicyCardSource(BaseModel):
             return None
         if value.tzinfo is None or value.utcoffset() is None:
             raise ValueError("effective timestamps must be timezone-aware")
-        return value.astimezone(timezone.utc)
+        return value.astimezone(UTC)
 
     @field_validator("allowed_actions")
     @classmethod
@@ -95,7 +94,7 @@ class PolicyCardSource(BaseModel):
         return value
 
     @model_validator(mode="after")
-    def effective_interval_is_ordered(self) -> "PolicyCardSource":
+    def effective_interval_is_ordered(self) -> PolicyCardSource:
         if self.effective_to is not None and self.effective_to <= self.effective_from:
             raise ValueError("effective_to must be later than effective_from")
         if not self.legal_interpretation_prohibited:
@@ -116,7 +115,7 @@ class CompiledPolicyCard(PolicyCardSource):
     def is_effective_at(self, decision_time: datetime) -> bool:
         if decision_time.tzinfo is None or decision_time.utcoffset() is None:
             raise ValueError("decision_time must be timezone-aware")
-        decision_utc = decision_time.astimezone(timezone.utc)
+        decision_utc = decision_time.astimezone(UTC)
         return self.effective_from <= decision_utc and (
             self.effective_to is None or decision_utc < self.effective_to
         )
@@ -129,7 +128,7 @@ class PolicyCardBundle(BaseModel):
     cards: list[PolicyCardSource] = Field(min_length=1)
 
     @model_validator(mode="after")
-    def ids_are_unique(self) -> "PolicyCardBundle":
+    def ids_are_unique(self) -> PolicyCardBundle:
         ids = [card.card_id for card in self.cards]
         if len(ids) != len(set(ids)):
             raise ValueError("policy card IDs must be unique")

@@ -26,7 +26,6 @@ from .policy_cards import compile_policy_cards, load_compiled_policy_cards
 from .retrieval import RetrievalHit
 from .verification_policy import CLAIM_BOUNDARY, PolicyContext
 
-
 STAGE3_BENCHMARK_SCHEMA_VERSION = "1.0"
 
 

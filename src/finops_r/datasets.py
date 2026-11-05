@@ -18,7 +18,6 @@ import pandas as pd
 from .json_safety import StrictJSONError, strict_json_dumps, strict_json_loads
 from .path_safety import is_portable_component
 
-
 ISO_REQUIRED_MEMBERS = {
     "iso20022_analytics.csv",
     "pacs002.csv",
